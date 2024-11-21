@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #ffffffde;
+  color: #000000de;
   background-color:  #347F85;
 
   font-synthesis: none;
@@ -47,9 +47,14 @@ body{
 .taskContainer{
   display:flex;
   align-self: center;
+  justify-content:center;
+  flex-direction: column;
   background-color:azure;
   width : 80vw;
   height : 25vh;
   margin-top: 15%;
   opacity: 0.5;
+}
+.task{
+  align-self:center;
 }
