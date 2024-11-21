@@ -10,3 +10,10 @@ export default function NewTask() {
         </div>
     ); 
 }
+
+function createTask(name, description, progression, deadline){
+    this.name = name;
+    this.desc = description;
+    this.prog = progression;
+    this.deadline = deadline;
+}
