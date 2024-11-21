@@ -1,41 +1,29 @@
+// läs in vektor från databas
 
-// "private"
+// dela upp vektor i brackets enligt daysLeft
 
-// getInput?
+// beräkna "utslagspoäng" baserat på size och progress
+function calculatePoints(size, progressValue) {
 
-// beräknar prio-poäng utifrån 
-function calculateDeadlinePoints(daysLeft) {
+    let points = 0; 
+    const sizePoints = 6 - size; 
 
-    return deadlinePoints
-}
-
-// beräknar prio-poäng utifrån progress i %
-function calculateProgressPoints(progressValue) {
-    let progressPoints; 
+    let progressPoints = 0; 
     for (let i = 1; i <= 5; i++) {
         if (progressValue <= i*20) {
             progressPoints = i; 
+            break; 
         }
     }
-    
-    return progressPoints; 
 
-}; 
+    points = sizePoints + progressPoints; 
 
+    return points; 
 
-// calculateTime
+}
 
-// sort priority [index 1 highest priority, index 5 lowest priority]
- 
+// sortera brackets baserat på poäng
 
-// calculateTotal 
-// 1. Deadline + 2. Difficulty/Time
-
-
-
-
-// "public"
-
-// getTotal
+// insert brackets i final sorterad vektor
 
 
