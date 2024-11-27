@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Datepicker from "react-datepicker"; 
 import "react-datepicker/dist/react-datepicker.css"; 
+import TaskObject from "../TaskObject";
 
 export default function NewTask() {
     const [date, setDate] = useState(new Date()); 
@@ -12,8 +13,6 @@ export default function NewTask() {
 }
 
 function createTask(name, description, progression, deadline){
-    this.name = name;
-    this.desc = description;
-    this.prog = progression;
-    this.deadline = deadline;
+    let myTask = new TaskObject(name, description, progression,deadline);
+    return myTask;
 }

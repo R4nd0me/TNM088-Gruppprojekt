@@ -1,4 +1,3 @@
-
 class TaskObject{
     constructor(name, description, progression, deadline){
         this.name = name;

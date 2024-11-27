@@ -34,6 +34,8 @@ body{
   display:flex;
   align-items: center;
   justify-content: space-around;
+  bottom:0;
+  position: fixed;
 }
 .container{
   display:flex;
@@ -51,10 +53,14 @@ body{
   flex-direction: column;
   background-color:azure;
   width : 80vw;
-  height : 25vh;
   margin-top: 15%;
-  opacity: 0.5;
+  opacity: 0.4;
+  position:fixed;
+  top:1%;
 }
 .task{
+  align-self:center;
+}
+.todo{
   align-self:center;
 }

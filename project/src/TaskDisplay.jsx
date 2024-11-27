@@ -10,7 +10,6 @@ export default function TaskDisplay(){
             <Task data = {taskDetails}></Task>
         </div>
     )
-        
 }
 
 function Task(props){
