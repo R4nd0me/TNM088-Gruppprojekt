@@ -1,4 +1,5 @@
 import React from "react";
+import TaskObject from './TaskObject.jsx'
 
 export default function TaskDisplay(){
     // const taskDisplay = Task();
@@ -18,20 +19,4 @@ function Task(props){
     return(
         <div className = "task">{data.name}</div>
     )
-}
-function testFunc(a,b){
-    const test = a + b;
-    return test;
-}
-class TaskObject{
-    constructor(name, description, progression, deadline){
-        this.name = name;
-        this.description = description;
-        this.progression = progression;
-        this.deadline = deadline;
-        this.priority = testFunc(progression,deadline);
-    }
-    Update(){
-
-    }
 }
