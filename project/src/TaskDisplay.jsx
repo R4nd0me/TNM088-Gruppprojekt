@@ -6,7 +6,7 @@ export default function TaskDisplay(){
     const taskDetails = new TaskObject("taskName", "taskDesc", "taskProg", "taskDead");
     return(
         <div className = 'taskContainer'>
-            <div className = 'task'>Today's tasks</div>
+            <div className = 'todo'>Today's tasks</div>
             <Task data = {taskDetails}></Task>
         </div>
     )

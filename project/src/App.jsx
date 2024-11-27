@@ -1,17 +1,20 @@
 import React from 'react'
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import './App.css'
-import NavigationBar from './NavigationBar.jsx'
 import HomePage from './HomePage.jsx'
-import TaskDisplay from './TaskDisplay.jsx'
+import SettingsPage from './Pages/SettingsPage.jsx';
 
 
 export default function App(){
 
   return(
-    <div className='container'>
-      <TaskDisplay></TaskDisplay>
-      <NavigationBar className = "Navbar"></NavigationBar>
-
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path = "/">
+        <Route index element = {<HomePage></HomePage>}></Route>
+        <Route path = "settings" element = {<SettingsPage></SettingsPage>}></Route>
+      </Route>
+    </Routes>
+    </BrowserRouter>
   )
 }

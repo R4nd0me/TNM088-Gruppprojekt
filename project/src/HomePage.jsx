@@ -1,13 +1,14 @@
 import {useEffect, useState} from 'react';
+import TaskDisplay from './TaskDisplay.jsx'
+import NavigationBar from './NavigationBar.jsx'
+import { Link } from 'react-router-dom';
 
 
-function getWindowSize(){
-  const [size, setSize] = useState([0,0]); // useState for window size (width, height), default = (0,0) in px
-
-  return size;
-}
 export default function HomePage(){
     return(
-        <canvas className="mainCanvas"></canvas>
+        <div className='container'>
+        <TaskDisplay></TaskDisplay>
+        <NavigationBar className = "Navbar"></NavigationBar>
+        </div>
     )
 }
