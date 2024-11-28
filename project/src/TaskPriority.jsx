@@ -2,25 +2,42 @@ import TaskObject from './TaskObject.jsx';
 
 // läs in array från databas
 
-let taskArray = [new TaskObject("Projekt", "Programmera algoritm.", 5, 1), new TaskObject("Plugga KS TNA007", "Gör en hel kontrollskrivning.", 14, 4)]; 
+let taskArray = 
+[
+    new TaskObject("B", "hej", 23, 5, 1), 
+    new TaskObject("E", "hej", 80, 13, 1), 
+    new TaskObject("C", "Programmera algoritm.", 80, 4, 1), 
+    new TaskObject("D", "hej", 50, 11, 1), 
+    new TaskObject("A", "Gör en hel kontrollskrivning.", 0, 2, 5)
+]; 
+
+console.log(taskArray); 
+
+let sortedArray = sortTasks(taskArray);
+
+
+
+console.log(sortedArray); 
 
 // dela upp array i brackets enligt daysLeft
 
 function brackets(array) {
 
-    let bracketA; 
-    let bracketB; 
-    let bracketC; 
-    let bracketD; 
-    let bracketE; 
+    let bracketA = []; 
+    let bracketB = []; 
+    let bracketC = []; 
+    let bracketD = []; 
+    let bracketE = []; 
     let bracketArray = [bracketA, bracketB, bracketC, bracketD, bracketE]; 
 
-    for (let i = 0; i < array.size; i++) {
+    for (let i = 0; i < array.length; i++) {
+
+
         if (array[i].deadline < 3) {
             bracketA.push(array[i]); 
         } 
         else if (array[i].deadline < 6) {
-            bracketB.push(array[i]); 
+            bracketB.push(array[i]);
         }
         else if (array[i].deadline < 10) {
             bracketC.push(array[i]); 
@@ -41,7 +58,7 @@ function brackets(array) {
 function calculatePoints(size, progressValue) {
 
     let points = 0; 
-    const sizePoints = 6 - size; 
+    const sizePoints = 5 - size; 
 
     let progressPoints = 0; 
     for (let i = 1; i <= 5; i++) {
@@ -61,26 +78,35 @@ function calculatePoints(size, progressValue) {
 
 function bracketSort(bracket) {
 
-    if (bracket.size > 1) {
+    if (bracket.length > 1) {
         bracket.sort((a, b) => a.priority - b.priority); 
     }
+
+    //console.log(bracket); 
     
 }
 
 // insert brackets i final sorterad array
 
-export default function sortTasks() {
+export default function sortTasks(array) {
 
-    for (let i = 0; i < taskArray.size; i++) {
-        taskArray[i].priority = calculatePoints(taskArray[i].size, taskArray[i].progress); 
+    for (let i = 0; i < array.length; i++) {
+        array[i].priority = calculatePoints(array[i].size, array[i].progress); 
     }
 
-    let taskBrackets = brackets(taskArray); 
+    let taskBrackets = brackets(array); 
+    let sortedBracket = []; 
+    let sortedTasks = []; 
 
-    let sortedTasks; 
+    console.log(taskBrackets); 
 
-    for (let i = 0; i < taskBrackets.size; i++) {
-        let sortedBracket = bracketSort(taskBrackets[i]); 
+    for (let i = 0; i < taskBrackets.length; i++) {
+        bracketSort(taskBrackets[i]); 
+
+        sortedBracket = taskBrackets[i]; 
+
+        console.log(sortedBracket); 
+
         for (let j = 0; j < sortedBracket; j++) {
         sortedTasks.push(sortedBracket[j])
         }
