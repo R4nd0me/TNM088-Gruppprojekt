@@ -13,17 +13,17 @@ export default function NewTask() {
     ); 
     */
    return (
-    <div className = 'taskContainer'>
-        <TaskCreator></TaskCreator>
-    </div>
+    <TaskCreator></TaskCreator>
    )
 }
 
 function TaskCreator(){
     return(
-        <div>
+        <div className="taskContainer">
             <p>TaskName</p>
+            <input type = "text" placeholder=" name..." onChange={e => console.log(e.currentTarget.value)}></input>
             <p>TaskDesc</p>
+            <input type = "text" placeholder=" description..." onChange={e => console.log(e.currentTarget.value)}></input>
             <p>TaskDiff</p>
         </div>
     )

@@ -48,6 +48,7 @@ body{
 .taskContainer{
   display:flex;
   align-self: center;
+  align-items: center;
   justify-content:center;
   flex-direction: column;
   background-color:azure;
@@ -57,12 +58,11 @@ body{
   position:fixed;
   top:1%;
 }
-.task{
-  align-self:center;
+.return{
+  position: absolute;
+  top:1vh;
+  left:1vw;
 }
-.todo{
-  align-self:center;
-}
-.bakgrund{
+.inputBox{
   
 }
