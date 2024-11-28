@@ -5,7 +5,6 @@
 
   color-scheme: light dark;
   color: #000000de;
-  background-color:  #347F85;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -45,7 +44,6 @@ body{
   height:100vh;
   margin:0;
   padding:0;
-  background-image: url('/assets/Moodeng/Default/ room.svg');
 }
 .taskContainer{
   display:flex;
@@ -64,4 +62,7 @@ body{
 }
 .todo{
   align-self:center;
+}
+.bakgrund{
+  
 }

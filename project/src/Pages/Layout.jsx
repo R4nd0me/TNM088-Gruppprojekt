@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import NavigationBar from "../NavigationBar";
 import ReturnButton from "../ReturnButton";
 import { useRef } from "react";
-import bakgrund from "../assets/Moodeng/Default room.svg";
+import bakgrund from "../assets/Moodeng/Defaultroom.svg";
 
 
 
