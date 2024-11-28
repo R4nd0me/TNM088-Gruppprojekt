@@ -1,9 +1,10 @@
 class TaskObject{
-    constructor(name, description, progression, deadline){
+    constructor(name, description, progress, deadline, size){
         this.name = name;
         this.description = description;
-        this.progression = progression;
+        this.progress = progress;
         this.deadline = deadline;
+        this.size = size; 
         this.priority = null;
     }
 }
