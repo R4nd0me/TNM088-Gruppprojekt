@@ -65,15 +65,3 @@ body{
 .todo{
   align-self:center;
 }
-
-
-.Bakgrund{
-display:flex;
-align-self: center;
-justify-content: center;
-width:100vw;
-height:100vh;
-margin-top: 0cm;
-position: fixed;
-
-}
