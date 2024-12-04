@@ -4,11 +4,11 @@ import TaskObject from './TaskObject.jsx';
 
 let taskArray = 
 [
-    new TaskObject("B", "hej", 23, 5, 1), 
-    new TaskObject("E", "hej", 80, 13, 1), 
-    new TaskObject("C", "Programmera algoritm.", 80, 4, 1), 
-    new TaskObject("D", "hej", 50, 11, 1), 
-    new TaskObject("A", "Gör en hel kontrollskrivning.", 0, 2, 5)
+    new TaskObject("Work", "B", "hej", 23, 5, 1), 
+    new TaskObject("Work", "E", "hej", 80, 13, 1), 
+    new TaskObject("Work", "C", "Programmera algoritm.", 80, 4, 1), 
+    new TaskObject("Work", "D", "hej", 50, 11, 1), 
+    new TaskObject("Work", "A", "Gör en hel kontrollskrivning.", 0, 2, 5)
 ]; 
 
 console.log(taskArray); 
@@ -98,20 +98,22 @@ export default function sortTasks(array) {
     let sortedBracket = []; 
     let sortedTasks = []; 
 
-    console.log(taskBrackets); 
+    // console.log(taskBrackets); 
 
     for (let i = 0; i < taskBrackets.length; i++) {
         bracketSort(taskBrackets[i]); 
+        //console.log(taskBrackets[i]); 
 
-        sortedBracket = taskBrackets[i]; 
+        sortedBracket = taskBrackets[i];
 
-        console.log(sortedBracket); 
-
-        for (let j = 0; j < sortedBracket; j++) {
-        sortedTasks.push(sortedBracket[j])
+        for (let j = 0; j < sortedBracket.length; j++) {
+            if (sortedBracket[j] != null) {
+                sortedTasks.push(sortedBracket[j]);
+            }
         }
     }
 
+    // console.log(sortedTasks); 
     return sortedTasks; 
 
 }
