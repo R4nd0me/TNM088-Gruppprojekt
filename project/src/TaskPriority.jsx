@@ -98,20 +98,22 @@ export default function sortTasks(array) {
     let sortedBracket = []; 
     let sortedTasks = []; 
 
-    console.log(taskBrackets); 
+    // console.log(taskBrackets); 
 
     for (let i = 0; i < taskBrackets.length; i++) {
         bracketSort(taskBrackets[i]); 
+        //console.log(taskBrackets[i]); 
 
-        sortedBracket = taskBrackets[i]; 
+        sortedBracket = taskBrackets[i];
 
-        console.log(sortedBracket); 
-
-        for (let j = 0; j < sortedBracket; j++) {
-        sortedTasks.push(sortedBracket[j])
+        for (let j = 0; j < sortedBracket.length; j++) {
+            if (sortedBracket[j] != null) {
+                sortedTasks.push(sortedBracket[j]);
+            }
         }
     }
 
+    // console.log(sortedTasks); 
     return sortedTasks; 
 
 }
