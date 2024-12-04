@@ -74,3 +74,6 @@ body{
   background-size: cover;
   margin-left: -1%
 }
+.sliderContainer{
+  width:80%;
+}
