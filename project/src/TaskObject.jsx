@@ -11,6 +11,8 @@ class TaskObject{
         this.size = size; 
         // priority beräknas, ej input
         this.priority = null;
+        // completed ej input
+        this.completed = false; 
     }
 }
 
