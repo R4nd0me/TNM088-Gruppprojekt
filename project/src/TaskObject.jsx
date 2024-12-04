@@ -1,5 +1,6 @@
 class TaskObject{
-    constructor(name, description, progress, deadline, size){
+    constructor(category, name, description, progress, deadline, size){
+        this.category = category; 
         this.name = name;
         this.description = description;
         // progress i % 
