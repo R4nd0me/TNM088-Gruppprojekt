@@ -66,3 +66,11 @@ body{
 .inputBox{
   
 }
+.background{
+  width:100vw;
+  height:100vh;
+  margin-bottom: 15vh;
+  background: no-repeat url('/src/assets/Moodeng/test.png');
+  background-size: cover;
+  margin-left: -1%
+}

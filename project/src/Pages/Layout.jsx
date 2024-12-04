@@ -17,11 +17,11 @@ export default function Layout(){
     return(
         <>        
         <div className = "container" ref = {myRef}>
+                <div className = "background"></div>
                 <NavigationBar className = "Navbar"></NavigationBar>
                 <ReturnButton></ReturnButton>
                 <Outlet/>
         </div>
-
         </>
     )
 }
