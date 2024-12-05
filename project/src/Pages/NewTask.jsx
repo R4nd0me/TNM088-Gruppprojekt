@@ -3,9 +3,17 @@ import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; 
 import TaskObject from "../TaskObject";
 import Slider from '@mui/material/Slider';
+import { Button, ButtonGroup } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function NewTask() {
     const [date, setDate] = useState(new Date()); 
+
+    const [visibility, setVisibility] = useState(false);
+
+    function toggleVisibility(){
+        setVisibility(true);
+    }
     /*
     return (
         <div>
@@ -14,19 +22,41 @@ export default function NewTask() {
     ); 
     */
    return (
-    <TaskCreator></TaskCreator>
+    <ChooseDeadline visibility={visibility} toggleVisibility={toggleVisibility}></ChooseDeadline>
    )
 }
 function valuetext(value) {
     return `${value}°C`;
   }
+function DescribeTask(){
 
-function ChooseCategory(){
-    return(
-        <></>
-    )
 }
 
+const buttons = [
+  <Button key="Work" color = 'success'>Work</Button>,
+  <Button key="Home">Home</Button>,
+  <Button key="Leisure" color = '#4caf50'>Leisure</Button>,
+];
+
+function ChooseDeadline({ visibility, toggleVisibility }) {
+    return (
+        <div className="category">
+            {!visibility && (
+                <>
+                    <p>Choose a category</p>
+                    <ButtonGroup orientation="vertical" variant="contained">
+                        {buttons.map((button, index) => (
+                            <Button key={index} onClick={toggleVisibility}>
+                                {button.props.children}
+                            </Button>
+                        ))}
+                    </ButtonGroup>
+                </>
+            )}
+            {visibility && <TaskCreator />}
+        </div>
+    );
+}
 function TaskCreator(){
     return(
         <div className="taskContainer">

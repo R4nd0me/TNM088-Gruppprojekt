@@ -3,7 +3,7 @@ import TaskObject from './TaskObject.jsx'
 
 export default function TaskDisplay(){
     // const taskDisplay = Task();
-    const taskDetails = new TaskObject("taskName", "taskDesc", "taskProg", "taskDead");
+    const taskDetails = new TaskObject("Work","taskName", "taskDesc", "taskProg", "taskDead");
     return(
         <div className = 'taskContainer'>
             <div className = 'todo'>Today's tasks</div>

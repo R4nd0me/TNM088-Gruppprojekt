@@ -77,3 +77,15 @@ body{
 .sliderContainer{
   width:80%;
 }
+.category{
+  width: 40vw;
+  display:flex;
+  align-self: center;
+  align-items: center;
+  justify-content:center;
+  flex-direction: column;
+  background-color:azure;
+  opacity: 0.4;
+  position:fixed;
+  top:20vh;
+}
