@@ -38,7 +38,13 @@ const buttons = [
         <Button key="Leisure" color = '#4caf50'>Leisure</Button>,
 ];
 
-const marks = [{value : 0, label: 0%}]
+const yearButtons = [
+    <Button key = 'dd'>DD</Button>,
+    <Button key = 'mm'>MM</Button>,
+    <Button key = 'yy'>YY</Button>,
+];
+
+//const marks = [{value : 0, label: 0%}];
 
 
 function Menu({ visibility, toggleVisibility }) {
@@ -69,13 +75,16 @@ function TaskCreator(){
             <input type = "text" placeholder=" description..." onChange={e => console.log(e.currentTarget.value)}></input>
             <p>TaskDiff</p>
             <div className = 'sliderContainer'><Slider aria-label="TaskSize" defaultValue={10} getAriaValueText={valuetext} valueLabelDisplay="auto" shiftStep={30} step={10} marks min={0} max = {100}></Slider></div>
+            <div className = 'datePicker'>{PickDeadline}</div>
             <Button key = 'next'>Next</Button>
         </div>
     )
 }
 function PickDeadline(){
     return(
-        <div className = 'deadline'></div>
+        <>
+        <ButtonGroup></ButtonGroup>
+        </>
     )
 }
 function PickDifficulty(){
