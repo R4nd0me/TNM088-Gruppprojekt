@@ -5,9 +5,9 @@ let allTasks = false;
 
 class MooDeng {
     constructor() {
-        this.hunger = 0;
-        this.clean = 0;
-        this.play = 0;
+        this.hunger = 2;
+        this.clean = 2;
+        this.play = 2;
         this.happy = false;
         this.kaos = false;
     }
@@ -19,14 +19,14 @@ class MooDeng {
 
     // happy (alla tasks complete) true/false
     isHappy() {
-        if (allTasks) {
+        if (allTasks && this['kaos'] != true) {
             this['happy'] = true;
         }
     }
 
     // kaos (alla stats = 2) true/false
     isKaos() {
-        if (this.hunger == this.clean == this.play == 2) {
+        if (this.hunger == 2 && this.clean == 2 && this.play == 2) {
             this['kaos'] = true;
         }
     }
@@ -40,6 +40,18 @@ class MooDeng {
     // if work task gjord -1 hunger 
 
     // workDone
+    workDone() {
+        if (workTask) {
+            while (this.hunger < 2) {
+                this.hunger++; 
+            }
+        }
+        else {
+            while (this.hunger > 0) {
+                this.hunger--; 
+            }
+        }
+    }
 
     // homeDone
 
@@ -58,6 +70,9 @@ export default function MyMooDeng() {
 
 const myMooDeng = new MooDeng();
 myMooDeng.isHappy();
-console.log(myMooDeng.happy);
+myMooDeng.isKaos(); 
+console.log(myMooDeng); 
+console.log("Happy: " + myMooDeng.happy);
+console.log("Kaos: " + myMooDeng.kaos); 
 
 
