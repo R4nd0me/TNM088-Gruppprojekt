@@ -33,22 +33,17 @@ function DescribeTask(){
 
 }
 
-const buttons = [
-        <Button key="Work" color = 'success'>Work</Button>,
-        <Button key="Home">Home</Button>,
-        <Button key="Leisure" color = '#4caf50'>Leisure</Button>,
-];
 
-const yearButtons = [
-    <TextField key = 'dd' label = 'dd' type = 'number' inputProps={{min:0}}></TextField>,
-    <TextField key = 'mm' label = 'mm' type = 'number' inputProps={{min:0}}></TextField>,
-    <TextField key = 'yy' label = 'yy' type = 'number' inputProps={{min:0}}></TextField>
-];
 
 //const marks = [{value : 0, label: 0%}];
 
 
 function Menu({ visibility, toggleVisibility }) {
+    const buttons = [
+        <Button key="Work" color = 'success'>Work</Button>,
+        <Button key="Home">Home</Button>,
+        <Button key="Leisure" color = '#4caf50'>Leisure</Button>,
+];
     return (
         <div className="category">
             {!visibility && (
@@ -68,28 +63,36 @@ function Menu({ visibility, toggleVisibility }) {
     );
 }
 function TaskCreator(){
+    const yearButtons = [
+        <TextField key = 'dd' label = 'dd' type = 'number' inputProps={{min:0, max:31}}></TextField>,
+        <TextField key = 'mm' label = 'mm' type = 'number' inputProps={{min:0, max:12}}></TextField>,
+        <TextField key = 'yy' label = 'yy' type = 'number' inputProps={{min:0}}></TextField>
+    ];
+    function PickDeadline(){
+        return(
+            <>
+            <ButtonGroup>{yearButtons}.map()</ButtonGroup>
+            </>
+        )
+    }
     let navigate = useNavigate();
+    const [taskData, setTaskData] = useState({name:"swag", description : "swag 2"});
     return(
         <div className="taskCreation">
             <p>TaskName</p>
-            <input type = "text" placeholder=" name..." onChange={e => console.log(e.currentTarget.value)}></input>
+            <input type = "text" placeholder=" name..." onChange={e => setTaskData((prev) => {return {...prev, name: e.target.value}})} value = {taskData.name}></input>
             <p>TaskDesc</p>
             <input type = "text" placeholder=" description..." onChange={e => console.log(e.currentTarget.value)}></input>
             <p>TaskDiff</p>
             <div className = 'sliderContainer'><Slider aria-label="TaskSize" defaultValue={10} getAriaValueText={valuetext} valueLabelDisplay="auto" shiftStep={30} step={10} marks min={0} max = {100}></Slider></div>
             <p>Deadline</p>
             <div className = 'datePicker'>{<PickDeadline></PickDeadline>}</div>
-            <Button key = 'next' onClick={() => {navigate('/')}}>CONFIRM!</Button>
+            <Button key = 'next' onClick={() => {console.log(taskData);navigate('/')}}>CONFIRM!</Button>
         </div>
     )
 }
-function PickDeadline(){
-    return(
-        <>
-        <ButtonGroup>{yearButtons}.map()</ButtonGroup>
-        </>
-    )
-}
-function PickDifficulty(){
+
+function storeData(){
+    return 
 
 }
