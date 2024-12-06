@@ -1,4 +1,6 @@
 import { useLocation, useNavigate} from "react-router-dom"
+import {IconButton } from "@mui/material";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
 export default function ReturnButton(){
     let navigate = useNavigate();
@@ -8,7 +10,7 @@ export default function ReturnButton(){
     if (pathname != '/'){
     return (
         <div className = 'return'>
-            <button type ='button' onClick={() => {navigate('/')}}>Return</button>
+            <IconButton size = 'large' onClick={() => {navigate('/')}}><KeyboardReturnIcon></KeyboardReturnIcon></IconButton>
         </div>
     )
     }

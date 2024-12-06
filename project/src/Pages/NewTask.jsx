@@ -3,7 +3,7 @@ import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; 
 import TaskObject from "../TaskObject";
 import Slider from '@mui/material/Slider';
-import { Button, ButtonGroup } from "@mui/material";
+import { Box, Button, ButtonGroup } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function NewTask() {
@@ -22,7 +22,7 @@ export default function NewTask() {
     ); 
     */
    return (
-    <ChooseDeadline visibility={visibility} toggleVisibility={toggleVisibility}></ChooseDeadline>
+    <Menu visibility={visibility} toggleVisibility={toggleVisibility}></Menu>
    )
 }
 function valuetext(value) {
@@ -33,18 +33,21 @@ function DescribeTask(){
 }
 
 const buttons = [
-  <Button key="Work" color = 'success'>Work</Button>,
-  <Button key="Home">Home</Button>,
-  <Button key="Leisure" color = '#4caf50'>Leisure</Button>,
+        <Button key="Work" color = 'success'>Work</Button>,
+        <Button key="Home">Home</Button>,
+        <Button key="Leisure" color = '#4caf50'>Leisure</Button>,
 ];
 
-function ChooseDeadline({ visibility, toggleVisibility }) {
+const marks = [{value : 0, label: 0%}]
+
+
+function Menu({ visibility, toggleVisibility }) {
     return (
         <div className="category">
             {!visibility && (
                 <>
                     <p>Choose a category</p>
-                    <ButtonGroup orientation="vertical" variant="contained">
+                    <ButtonGroup orientation="vertical">
                         {buttons.map((button, index) => (
                             <Button key={index} onClick={toggleVisibility}>
                                 {button.props.children}
@@ -59,21 +62,22 @@ function ChooseDeadline({ visibility, toggleVisibility }) {
 }
 function TaskCreator(){
     return(
-        <div className="taskContainer">
+        <div className="taskCreation">
             <p>TaskName</p>
             <input type = "text" placeholder=" name..." onChange={e => console.log(e.currentTarget.value)}></input>
             <p>TaskDesc</p>
             <input type = "text" placeholder=" description..." onChange={e => console.log(e.currentTarget.value)}></input>
             <p>TaskDiff</p>
             <div className = 'sliderContainer'><Slider aria-label="TaskSize" defaultValue={10} getAriaValueText={valuetext} valueLabelDisplay="auto" shiftStep={30} step={10} marks min={0} max = {100}></Slider></div>
-            <p>TaskCategory</p>
-            <div className="categoryContainer">
-            </div>
+            <Button key = 'next'>Next</Button>
         </div>
     )
 }
+function PickDeadline(){
+    return(
+        <div className = 'deadline'></div>
+    )
+}
+function PickDifficulty(){
 
-function createTask(name, description, progression, deadline){
-    let myTask = new TaskObject(name, description, progression,deadline);
-    return myTask;
 }
