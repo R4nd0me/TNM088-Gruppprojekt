@@ -1,13 +1,13 @@
-let workTask = false;
-let homeTask = false;
-let freeTask = false;
-let allTasks = false;
+let workComplete = false;
+let homeComplete = false;
+let freeComplete = false;
+let allComplete = false;
 
 class MooDeng {
     constructor() {
-        this.hunger = 2;
-        this.clean = 2;
-        this.play = 2;
+        this.hunger = 0;
+        this.clean = 0;
+        this.play = 0;
         this.happy = false;
         this.kaos = false;
     }
@@ -19,7 +19,7 @@ class MooDeng {
 
     // happy (alla tasks complete) true/false
     isHappy() {
-        if (allTasks && this['kaos'] != true) {
+        if (allComplete && this['kaos'] != true) {
             this['happy'] = true;
         }
     }
@@ -41,38 +41,52 @@ class MooDeng {
 
     // workDone
     workDone() {
-        if (workTask) {
-            while (this.hunger < 2) {
-                this.hunger++; 
-            }
+        if (workComplete && this.hunger > 0) {
+            this.hunger--; 
         }
-        else {
-            while (this.hunger > 0) {
-                this.hunger--; 
-            }
+        else if (!workComplete && this.hunger < 2) {
+            this.hunger++; 
         }
     }
 
     // homeDone
+    homeDone() {
+        if (homeComplete && this.clean > 0) {
+            this.clean--; 
+        }
+        else if (!homeComplete && this.clean < 2) {
+            this.clean++; 
+        }
+    }
 
     // freeDone
-}
+    freeDone() {
+        if (freeComplete && this.play > 0) {
+            this.play--; 
+        }
+        else if (!freeComplete && this.play < 2) {
+            this.play++; 
+        }
+    }
 
-export default function MyMooDeng() {
-
-
-    return (
-        <>
-        {myMooDeng}
-        </>
-    ); 
+    mooDengState() {
+        
+    }
 }
 
 const myMooDeng = new MooDeng();
-myMooDeng.isHappy();
-myMooDeng.isKaos(); 
-console.log(myMooDeng); 
-console.log("Happy: " + myMooDeng.happy);
-console.log("Kaos: " + myMooDeng.kaos); 
+
+export default function updateMooDeng(myMooDeng) {
+    myMooDeng.workDone(); 
+    myMooDeng.homeDone(); 
+    myMooDeng.freeDone(); 
+    myMooDeng.isHappy();
+    myMooDeng.isKaos(); 
+    console.log(myMooDeng); 
+    
+}
+
+updateMooDeng(myMooDeng); 
+
 
 
