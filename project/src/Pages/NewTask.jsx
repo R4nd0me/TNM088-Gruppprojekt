@@ -7,6 +7,7 @@ import { useLocation, useNavigate} from "react-router-dom"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs, { Dayjs } from 'dayjs';
 
 export default function NewTask() {
     const [date, setDate] = useState(new Date()); 
@@ -67,7 +68,7 @@ function TaskCreator(){
         )
     }
     let navigate = useNavigate();
-    const [taskData, setTaskData] = useState({name: 'def', description : 'def', progression : 0});
+    const [taskData, setTaskData] = useState({name: 'def', description : 'def', progression : (dayjs('0000-00-00'))});
     return(
         <div className="taskCreation">
             <p>TaskName</p>
@@ -78,9 +79,9 @@ function TaskCreator(){
             <div className = 'sliderContainer'><Slider aria-label="TaskProg" defaultValue={10} getAriaValueText={valuetext} valueLabelDisplay="auto" min={0} max = {100} onChange={(newValue) => console.log(newValue)}></Slider></div>
             <p>Deadline</p>
             <div className = 'datePicker'><LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker onChange = {e => console.log(e.target.value)}/>
+      <DatePicker value = {taskData.progression} onChange={e => setTaskData((prev) => {return {...prev, progression: e.target.value}})}/>
     </LocalizationProvider></div>
-            <Button key = 'next' onClick={() => {console.log(taskData);navigate('/')}}>CONFIRM!</Button>
+            <Button key = 'next' onClick={() => {console.log();navigate('/')}}>CONFIRM!</Button>
         </div>
     )
 }
