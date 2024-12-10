@@ -32,12 +32,7 @@ function valuetext(value) {
 function DescribeTask(){
 
 }
-
-
-
 //const marks = [{value : 0, label: 0%}];
-
-
 function Menu({ visibility, toggleVisibility }) {
     const buttons = [
         <Button key="Work" color = 'success'>Work</Button>,
@@ -63,11 +58,13 @@ function Menu({ visibility, toggleVisibility }) {
     );
 }
 function TaskCreator(){
+    /*
     const yearButtons = [
         <TextField key = 'dd' label = 'dd' type = 'number' inputProps={{min:0, max:31}}></TextField>,
         <TextField key = 'mm' label = 'mm' type = 'number' inputProps={{min:0, max:12}}></TextField>,
         <TextField key = 'yy' label = 'yy' type = 'number' inputProps={{min:0}}></TextField>
     ];
+    */
     function PickDeadline(){
         return(
             <>
@@ -76,17 +73,17 @@ function TaskCreator(){
         )
     }
     let navigate = useNavigate();
-    const [taskData, setTaskData] = useState({name:"swag", description : "swag 2"});
+    const [taskData, setTaskData] = useState({});
     return(
         <div className="taskCreation">
             <p>TaskName</p>
             <input type = "text" placeholder=" name..." onChange={e => setTaskData((prev) => {return {...prev, name: e.target.value}})} value = {taskData.name}></input>
             <p>TaskDesc</p>
-            <input type = "text" placeholder=" description..." onChange={e => console.log(e.currentTarget.value)}></input>
-            <p>TaskDiff</p>
-            <div className = 'sliderContainer'><Slider aria-label="TaskSize" defaultValue={10} getAriaValueText={valuetext} valueLabelDisplay="auto" shiftStep={30} step={10} marks min={0} max = {100}></Slider></div>
+            <input type = "text" placeholder=" description..." onChange={e => setTaskData((prev) => {return {...prev, description: e.target.value}})} value = {taskData.description}></input>
+            <p>Task Prog</p>
+            <div className = 'sliderContainer'><Slider aria-label="TaskProg" defaultValue={10} getAriaValueText={valuetext} valueLabelDisplay="auto" min={0} max = {100} onChange={e => console.log(e.target.value)}></Slider></div>
             <p>Deadline</p>
-            <div className = 'datePicker'>{<PickDeadline></PickDeadline>}</div>
+            <div className = 'datePicker'><TextField key = "date" label = {['day/', '/month', '/year']}/></div>
             <Button key = 'next' onClick={() => {console.log(taskData);navigate('/')}}>CONFIRM!</Button>
         </div>
     )
