@@ -1,11 +1,12 @@
 import { useState } from "react";
-import Datepicker from "react-datepicker"; 
 import "react-datepicker/dist/react-datepicker.css"; 
-import TaskObject from "../TaskObject";
 import Slider from '@mui/material/Slider';
 import { Box, Button, ButtonGroup } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import { useLocation, useNavigate} from "react-router-dom"
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function NewTask() {
     const [date, setDate] = useState(new Date()); 
@@ -15,13 +16,6 @@ export default function NewTask() {
     function toggleVisibility(){
         setVisibility(true);
     }
-    /*
-    return (
-        <div>
-            <Datepicker selected={date} onChange={(date) => setDate(date)} />
-        </div>
-    ); 
-    */
    return (
     <Menu visibility={visibility} toggleVisibility={toggleVisibility}></Menu>
    )
@@ -73,7 +67,7 @@ function TaskCreator(){
         )
     }
     let navigate = useNavigate();
-    const [taskData, setTaskData] = useState({});
+    const [taskData, setTaskData] = useState({name: 'def', description : 'def', progression : 0});
     return(
         <div className="taskCreation">
             <p>TaskName</p>
@@ -81,9 +75,11 @@ function TaskCreator(){
             <p>TaskDesc</p>
             <input type = "text" placeholder=" description..." onChange={e => setTaskData((prev) => {return {...prev, description: e.target.value}})} value = {taskData.description}></input>
             <p>Task Prog</p>
-            <div className = 'sliderContainer'><Slider aria-label="TaskProg" defaultValue={10} getAriaValueText={valuetext} valueLabelDisplay="auto" min={0} max = {100} onChange={e => console.log(e.target.value)}></Slider></div>
+            <div className = 'sliderContainer'><Slider aria-label="TaskProg" defaultValue={10} getAriaValueText={valuetext} valueLabelDisplay="auto" min={0} max = {100} onChange={(newValue) => console.log(newValue)}></Slider></div>
             <p>Deadline</p>
-            <div className = 'datePicker'><TextField key = "date" label = {['day/', '/month', '/year']}/></div>
+            <div className = 'datePicker'><LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DatePicker onChange = {e => console.log(e.target.value)}/>
+    </LocalizationProvider></div>
             <Button key = 'next' onClick={() => {console.log(taskData);navigate('/')}}>CONFIRM!</Button>
         </div>
     )
