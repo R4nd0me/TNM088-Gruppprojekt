@@ -9,6 +9,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/en-gb'
+import toObject from 'dayjs/plugin/toObject'
+dayjs.extend(toObject);
 
 export default function NewTask() {
     const [date, setDate] = useState(new Date()); 
@@ -54,22 +56,18 @@ function Menu({ visibility, toggleVisibility }) {
     );
 }
 function TaskCreator(){
-    /*
-    const yearButtons = [
-        <TextField key = 'dd' label = 'dd' type = 'number' inputProps={{min:0, max:31}}></TextField>,
-        <TextField key = 'mm' label = 'mm' type = 'number' inputProps={{min:0, max:12}}></TextField>,
-        <TextField key = 'yy' label = 'yy' type = 'number' inputProps={{min:0}}></TextField>
-    ];
-    */
-    function PickDeadline(){
-        return(
-            <>
-            <ButtonGroup>{yearButtons}.map()</ButtonGroup>
-            </>
-        )
-    }
     let navigate = useNavigate();
-    const [taskData, setTaskData] = useState({name: 'New Task', description : 'New Task Description', progression : 0, deadline : undefined});
+    const [taskData, setTaskData] = useState({name: 'New Task', description : 'Description', progression : 0, deadline : dateConverter(dayjs().format('DD/MM/YY'))});
+    console.log(taskData.deadline);
+
+    function dateConverter(dateString){
+        const [day, month, year] = dateString.split('/'); // Split the string by '/'
+        return {
+            day: parseInt(day, 10), // Convert day to a number
+            month: parseInt(month, 10), // Convert month to a number
+            year: parseInt(year, 10), // Convert year to a number
+        };
+    }
     return(
         <div className="taskCreation">
             <p>TaskName</p>
@@ -77,11 +75,14 @@ function TaskCreator(){
             <p>TaskDesc</p>
             <input type = "text" placeholder=" description..." onChange={e => setTaskData((prev) => {return {...prev, description: e.target.value}})} value = {taskData.description}></input>
             <p>Task Prog</p>
-            <div className = 'sliderContainer'><Slider aria-label="TaskProg" defaultValue={10} getAriaValueText={valuetext} valueLabelDisplay="auto" min={0} max = {100} onChange={(_, value) => setTaskData((prev) => {return {... prev, progression: value}})}></Slider></div>
+            <div className = 'sliderContainer'><Slider aria-label="TaskProg" getAriaValueText={valuetext} valueLabelDisplay="auto" min={0} max = {100} onChange={(_, value) => setTaskData((prev) => {return {... prev, progression: value}})}></Slider></div>
             <p>Deadline</p>
-            <div className = 'datePicker'><LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
-      <MobileDatePicker required label = "DD/MM/YY" value = {taskData.deadline} onChange={(newValue) => setTaskData((prev) => {return {...prev, deadline: newValue}})}/>
-    </LocalizationProvider></div>
+            <div className = 'datePicker'>
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
+            <MobileDatePicker minDate = {dayjs()} defaultValue = {dayjs()} onChange={(newValue) => setTaskData((prev) => {const date = dateConverter(newValue.format('DD/MM/YYYY'));
+                return {...prev, deadline: date}})}/>
+            </LocalizationProvider>
+            </div>
             <Button key = 'next' onClick={() => {console.log(taskData);navigate('/')}}>CONFIRM!</Button>
         </div>
     )
