@@ -1,8 +1,9 @@
 
+import TaskDisplay from '../TaskDisplay';
 export default function ViewTasks(){
     return(
         <div className= 'taskContainer'>
-            <p>Hello</p>
+            <TaskDisplay></TaskDisplay>
         </div>
     )
 }
