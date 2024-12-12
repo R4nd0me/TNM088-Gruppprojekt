@@ -6,8 +6,9 @@ import TextField from '@mui/material/TextField';
 import { useLocation, useNavigate} from "react-router-dom"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import dayjs, { Dayjs } from 'dayjs';
+import 'dayjs/locale/en-gb'
 
 export default function NewTask() {
     const [date, setDate] = useState(new Date()); 
@@ -68,7 +69,7 @@ function TaskCreator(){
         )
     }
     let navigate = useNavigate();
-    const [taskData, setTaskData] = useState({name: 'def', description : 'def', progression : (dayjs('0000-00-00'))});
+    const [taskData, setTaskData] = useState({name: 'New Task', description : 'New Task Description', progression : 0, deadline : undefined});
     return(
         <div className="taskCreation">
             <p>TaskName</p>
@@ -76,12 +77,12 @@ function TaskCreator(){
             <p>TaskDesc</p>
             <input type = "text" placeholder=" description..." onChange={e => setTaskData((prev) => {return {...prev, description: e.target.value}})} value = {taskData.description}></input>
             <p>Task Prog</p>
-            <div className = 'sliderContainer'><Slider aria-label="TaskProg" defaultValue={10} getAriaValueText={valuetext} valueLabelDisplay="auto" min={0} max = {100} onChange={(newValue) => console.log(newValue)}></Slider></div>
+            <div className = 'sliderContainer'><Slider aria-label="TaskProg" defaultValue={10} getAriaValueText={valuetext} valueLabelDisplay="auto" min={0} max = {100} onChange={(_, value) => setTaskData((prev) => {return {... prev, progression: value}})}></Slider></div>
             <p>Deadline</p>
-            <div className = 'datePicker'><LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker value = {taskData.progression} onChange={e => setTaskData((prev) => {return {...prev, progression: e.target.value}})}/>
+            <div className = 'datePicker'><LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
+      <MobileDatePicker required label = "DD/MM/YY" value = {taskData.deadline} onChange={(newValue) => setTaskData((prev) => {return {...prev, deadline: newValue}})}/>
     </LocalizationProvider></div>
-            <Button key = 'next' onClick={() => {console.log();navigate('/')}}>CONFIRM!</Button>
+            <Button key = 'next' onClick={() => {console.log(taskData);navigate('/')}}>CONFIRM!</Button>
         </div>
     )
 }

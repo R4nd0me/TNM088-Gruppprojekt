@@ -16,7 +16,6 @@ export default function TaskDisplay(){
 
 function Task(props){
     const {data} = props;
-    console.log(data);
     return(
         <div className = "task">{data.name}</div>
     )
