@@ -9,14 +9,12 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/en-gb'
-import toObject from 'dayjs/plugin/toObject'
-dayjs.extend(toObject);
+import jsonData from '../TaskDatabase.json'
+
 
 export default function NewTask() {
-    const [date, setDate] = useState(new Date()); 
 
     const [visibility, setVisibility] = useState(false);
-
     function toggleVisibility(){
         setVisibility(true);
     }
@@ -24,19 +22,13 @@ export default function NewTask() {
     <Menu visibility={visibility} toggleVisibility={toggleVisibility}></Menu>
    )
 }
-function valuetext(value) {
-    return `${value}°C`;
-  }
-function DescribeTask(){
-
-}
-//const marks = [{value : 0, label: 0%}];
 function Menu({ visibility, toggleVisibility }) {
     const buttons = [
         <Button key="Work" color = 'success'>Work</Button>,
         <Button key="Home">Home</Button>,
         <Button key="Leisure" color = '#4caf50'>Leisure</Button>,
-];
+    ];
+const [category, setCategory] = useState("");
     return (
         <div className="category">
             {!visibility && (
@@ -44,21 +36,22 @@ function Menu({ visibility, toggleVisibility }) {
                     <p>Choose a category</p>
                     <ButtonGroup orientation="vertical">
                         {buttons.map((button, index) => (
-                            <Button key={index} onClick={toggleVisibility}>
+                            <Button key={index} onClick={() => {
+                                setCategory(button.key);
+                                toggleVisibility();}}>
                                 {button.props.children}
                             </Button>
                         ))}
                     </ButtonGroup>
                 </>
             )}
-            {visibility && <TaskCreator />}
+            {visibility && <TaskCreator buttonType = {category}/>}
         </div>
     );
 }
-function TaskCreator(){
+function TaskCreator(buttonType){
     let navigate = useNavigate();
-    const [taskData, setTaskData] = useState({name: 'New Task', description : 'Description', progression : 0, deadline : dateConverter(dayjs().format('DD/MM/YY'))});
-    console.log(taskData.deadline);
+    const [taskData, setTaskData] = useState({name: 'New Task', description : 'Description', progression : 0, deadline : dateConverter(dayjs().format('DD/MM/YY')), category: buttonType.buttonType.toLowerCase()});
 
     function dateConverter(dateString){
         const [day, month, year] = dateString.split('/'); // Split the string by '/'
@@ -68,6 +61,9 @@ function TaskCreator(){
             year: parseInt(year, 10), // Convert year to a number
         };
     }
+    function saveToDatabase(){
+        console.log(jsonData);
+    }
     return(
         <div className="taskCreation">
             <p>TaskName</p>
@@ -75,7 +71,7 @@ function TaskCreator(){
             <p>TaskDesc</p>
             <input type = "text" placeholder=" description..." onChange={e => setTaskData((prev) => {return {...prev, description: e.target.value}})} value = {taskData.description}></input>
             <p>Task Prog</p>
-            <div className = 'sliderContainer'><Slider aria-label="TaskProg" getAriaValueText={valuetext} valueLabelDisplay="auto" min={0} max = {100} onChange={(_, value) => setTaskData((prev) => {return {... prev, progression: value}})}></Slider></div>
+            <div className = 'sliderContainer'><Slider aria-label="TaskProg"valueLabelDisplay="auto" min={0} max = {100} onChange={(_, value) => setTaskData((prev) => {return {... prev, progression: value}})}></Slider></div>
             <p>Deadline</p>
             <div className = 'datePicker'>
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
@@ -83,7 +79,7 @@ function TaskCreator(){
                 return {...prev, deadline: date}})}/>
             </LocalizationProvider>
             </div>
-            <Button key = 'next' onClick={() => {console.log(taskData);navigate('/')}}>CONFIRM!</Button>
+            <Button key = 'next' onClick={() => {console.log(taskData);navigate('/');saveToDatabase();}}>CONFIRM!</Button>
         </div>
     )
 }
