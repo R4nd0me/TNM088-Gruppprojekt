@@ -1,48 +1,87 @@
+import PropTypes from 'prop-types'; 
 
 import vanlig from './assets/Moodeng/Moodeng-vanlig.svg'; 
+import heart from './assets/Moodeng/HEARTTTTTT.svg';
 
 let workComplete = false;
 let homeComplete = false;
 let freeComplete = false;
 let allComplete = false;
 
-let props = { hunger: 0, clean: 0, play: 0, happy: false, kaos: false, url: vanlig}; 
+MooDeng.propTypes = {
+    hunger: PropTypes.number,  
+    clean: PropTypes.number, 
+    play: PropTypes.number, 
+    happy: PropTypes.bool, 
+    kaos: PropTypes.bool, 
+    url: PropTypes.string
+}
+
+const state = { 
+    hunger: 0, 
+    clean: 0, 
+    play: 0, 
+    happy: false, 
+    kaos: false, 
+    url: vanlig
+}; 
 
 export default function MooDengState() {
     
-    
-    return (
-        <>
-        <MooDeng></MooDeng>
-        </>    
-    )
-}
 
-function MooDeng() {
-    // let hunger = props.hunger;
-    // let clean = 0;
-    // let play = 0;
-    // let happy = false;
-    // let kaos = false;
-    let url = vanlig; 
-    
-    return (
-        <>
-        <img id='MooDeng' src={url}/>
-        </>    
-    )
-}
-
-
-
-    // happy (alla tasks complete) true/false
-void function isHappy() {
-    if (allComplete && props.kaos != true) {
-        props.happy = true;
+    if (allComplete && state.kaos != true) {
+        state.happy = true;
     }
 
+    if (state.happy == true) {
+        state.url = heart; 
+    } 
+     console.log(state.url); 
+    
+    
+    return (
+        <>
+        <MooDeng 
+        hunger={state.hunger}
+        clean={state.clean} 
+        play={state.play} 
+        happy={state.happy} 
+        kaos={state.kaos}
+        url={state.url}
+        />
+        </>    
+    )
+}
+
+function MooDeng(props) {
+    // let hunger = props.hunger;
+    // let clean = props.clean;
+    // let play = props.play;
+    
+    // let happy = props.happy;
+    // let kaos = props.kaos;
+    // let url = props.url; 
+
+    
+    
+    console.log(props); 
+
+    return (
+        <>
+        <img id='MooDeng' src={props.url}/>
+        </>    
+    )
 
 }
+
+    // happy (alla tasks complete) true/false
+// void function isHappy() {
+//     if (allComplete && props.kaos != true) {
+//         props.happy = true;
+//     }
+
+
+// }
 
 // class MooDeng {
 //     constructor() {
