@@ -117,4 +117,11 @@ body{
 #MooDeng {
   width: 50vw; 
   transform: translate(50vw, 65vh); 
+  position: absolute; 
+}
+
+.room {
+  width: 249vw; 
+  transform: translate(-35vw, -38vh); 
+  position: fixed; 
 }
