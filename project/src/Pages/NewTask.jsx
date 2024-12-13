@@ -1,13 +1,12 @@
 import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css"; 
 import Slider from '@mui/material/Slider';
-import { Box, Button, ButtonGroup } from "@mui/material";
-import TextField from '@mui/material/TextField';
-import { useLocation, useNavigate} from "react-router-dom"
+import {Button, ButtonGroup } from "@mui/material";
+import { useNavigate} from "react-router-dom"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import 'dayjs/locale/en-gb'
 import jsonData from '../TaskDatabase.json'
 
