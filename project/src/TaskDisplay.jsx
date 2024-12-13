@@ -3,7 +3,8 @@ import tasks from './TaskDataBase.json';
 import { data, useLocation } from "react-router-dom";
 let database = [
     { "_id" : 0, "category" : "work", "name" : "Work on joe", "description" : "Dante", "progress" : 1, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false},
-    { "_id" : 1, "category" : "work", "name" : "Work on moe", "description" : "Dante", "progress" : 1, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false}
+    { "_id" : 1, "category" : "leisure", "name" : "Work on moe", "description" : "Dante", "progress" : 1, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false},
+    { "_id" : 2, "category" : "home", "name" : "Work on poe", "description" : "Dante", "progress" : 1, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false}
     ];
 
 export default function TaskDisplay(){
