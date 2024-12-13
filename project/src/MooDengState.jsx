@@ -1,7 +1,27 @@
 import PropTypes from 'prop-types'; 
 
-import vanlig from './assets/Moodeng/Moodeng-vanlig.svg'; 
-import heart from './assets/Moodeng/HEARTTTTTT.svg';
+// vanlig och "extrema" moodengs
+import vanligDeng from './assets/Moodeng/Moodeng-vanlig.svg'; 
+import heartDeng from './assets/Moodeng/HEARTTTTTT.svg';
+import kaosDeng from './assets/Moodeng/Moodeng-hungrig2-smutsig2.svg'; 
+
+// olika hungriga o smutsiga moodengs
+import H1 from './assets/Moodeng/Moodeng-hungrig1.svg';
+import H2 from './assets/Moodeng/Moodeng-hungrig2.svg';
+import S1 from './assets/Moodeng/Moodeng-vanlig-smutsig1.svg';
+import S2 from './assets/Moodeng/Moodeng-vanlig-smutsig2.svg';
+import H1S1 from './assets/Moodeng/Moodeng-hungrig1-smutsig1.svg';
+import H1S2 from './assets/Moodeng/Moodeng-hungrig1-smutsig2.svg';
+import H2S1 from './assets/Moodeng/Moodeng-hungrig2-smutsig1.svg';
+import H2S2 from './assets/Moodeng/Moodeng-hungrig2-smutsig2.svg';
+
+
+
+// bakgrund
+import vanligtRum from './assets/Moodeng/Defaultroom.svg'; 
+import uttråkad1 from './assets/Moodeng/rum-uttråkad1.svg'; 
+import uttråkad2 from './assets/Moodeng/rum-uttråkad2.svg'; 
+import uttråkad3 from './assets/Moodeng/rum-uttråkad3.svg'; 
 
 let workComplete = false;
 let homeComplete = false;
@@ -14,7 +34,8 @@ MooDeng.propTypes = {
     play: PropTypes.number, 
     happy: PropTypes.bool, 
     kaos: PropTypes.bool, 
-    url: PropTypes.string
+    mooBild: PropTypes.string,
+    room: PropTypes.string
 }
 
 const state = { 
@@ -23,7 +44,8 @@ const state = {
     play: 0, 
     happy: false, 
     kaos: false, 
-    url: vanlig
+    mooBild: vanligDeng,
+    room: vanligtRum
 }; 
 
 export default function MooDengState() {
@@ -31,13 +53,22 @@ export default function MooDengState() {
 
     if (allComplete && state.kaos != true) {
         state.happy = true;
+        state.mooBild = heartDeng; 
     }
 
-    if (state.happy == true) {
-        state.url = heart; 
-    } 
-     console.log(state.url); 
+    if (state.hunger == 2 && state.clean == 2 && state.play == 2) {
+        state.kaos = true;
+        state.mooBild = kaosDeng; 
+        state.room = uttråkad3; 
+    }
     
+    
+    if (state.play == 1) {
+        state.room = uttråkad1; 
+    }
+    else if (state.play == 2 && !state.kaos) {
+        state.room = uttråkad2; 
+    }
     
     return (
         <>
@@ -47,7 +78,8 @@ export default function MooDengState() {
         play={state.play} 
         happy={state.happy} 
         kaos={state.kaos}
-        url={state.url}
+        mooBild={state.mooBild}
+        room={state.room}
         />
         </>    
     )
@@ -68,13 +100,14 @@ function MooDeng(props) {
 
     return (
         <>
-        <img id='MooDeng' src={props.url}/>
+        <img className='room' src={props.room}/>
+        <img id='MooDeng' src={props.mooBild}/>
         </>    
     )
 
 }
 
-    // happy (alla tasks complete) true/false
+// happy (alla tasks complete) true/false
 // void function isHappy() {
 //     if (allComplete && props.kaos != true) {
 //         props.happy = true;
