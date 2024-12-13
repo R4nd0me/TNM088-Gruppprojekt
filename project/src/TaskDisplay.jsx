@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import tasks from './TaskDataBase.json';
 import { data, useLocation } from "react-router-dom";
+import { updateMooDeng } from "./MooDengState";
+
 let database = [
     { "_id" : 0, "category" : "work", "name" : "Work on joe", "description" : "Dante", "progress" : 1, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false},
     { "_id" : 1, "category" : "leisure", "name" : "Work on moe", "description" : "Dante", "progress" : 1, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false},
@@ -8,6 +10,11 @@ let database = [
     ];
 
 export default function TaskDisplay(){
+    
+    // när ett task är completed: 
+    //updateMooDeng(database[0].completed, database[1].completed, database[2].completed); 
+
+
     // const taskDisplay = Task();
     let location = useLocation();
     console.log(location.state);

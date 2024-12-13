@@ -21,9 +21,9 @@ import uttråkad1 from './assets/Moodeng/rum-uttråkad1.svg';
 import uttråkad2 from './assets/Moodeng/rum-uttråkad2.svg'; 
 import uttråkad3 from './assets/Moodeng/rum-uttråkad3.svg'; 
 
-let workComplete = false;
-let homeComplete = false;
-let freeComplete = false;
+// let workComplete = false;
+// let homeComplete = false;
+// let freeComplete = false;
 let allComplete = false;
 
 MooDeng.propTypes = {
@@ -36,7 +36,8 @@ MooDeng.propTypes = {
     room: PropTypes.string
 }
 
-const state = { 
+ 
+let state = { 
     hunger: 0, 
     clean: 0, 
     play: 0, 
@@ -46,50 +47,14 @@ const state = {
     room: vanligtRum
 }; 
 
-if (workComplete || homeComplete || freeComplete) {
-    updateMooDeng(); 
-}
+// if (workComplete || homeComplete || freeComplete) {
+//     updateMooDeng(); 
+// }
 
-export default function MooDengState() {
+export function updateMooDeng(workComplete, homeComplete, freeComplete) {
 
-    return (
-        <>
-        <MooDeng 
-        hunger={state.hunger}
-        clean={state.clean} 
-        play={state.play} 
-        happy={state.happy} 
-        kaos={state.kaos}
-        mooBild={state.mooBild}
-        room={state.room}
-        />
-        </>    
-    )
-}
+    console.log(workComplete);
 
-function MooDeng(props) {
-    // let hunger = props.hunger;
-    // let clean = props.clean;
-    // let play = props.play;
-    
-    // let happy = props.happy;
-    // let kaos = props.kaos;
-    // let url = props.url; 
-
-    
-    
-    console.log(props); 
-
-    return (
-        <>
-        <img className='room' src={props.room}/>
-        <img id='MooDeng' src={props.mooBild}/>
-        </>    
-    )
-
-}
-
-function updateMooDeng() {
     // kolla om "work"-task är gjord och uppdatera hunger, bild på mat
     if (workComplete && state.hunger > 0) {
         state.hunger--; 
@@ -119,7 +84,49 @@ function updateMooDeng() {
     isKaos();
     displayMoodeng(); 
     background(); 
+
+    return state; 
 }
+
+export default function MooDengState() {
+    console.log(state); 
+
+   // updateMooDeng(); 
+   
+
+    return (
+        <>
+        <MooDeng 
+        hunger={state.hunger}
+        clean={state.clean} 
+        play={state.play} 
+        happy={state.happy} 
+        kaos={state.kaos}
+        mooBild={state.mooBild}
+        room={state.room}
+        />
+        </>    
+    )
+}
+
+function MooDeng(props) {
+    
+    // let hunger = props.hunger;
+    // let clean = props.clean;
+    // let play = props.play;
+    
+    // let happy = props.happy;
+    // let kaos = props.kaos;
+    // let url = props.url;  
+
+    return (
+        <>
+        <img className='room' src={props.room}/>
+        <img id='MooDeng' src={props.mooBild}/>
+        </>    
+    )
+
+} 
 
 // när alla dagens uppgifter är klara
 
