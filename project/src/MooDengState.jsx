@@ -15,8 +15,6 @@ import H1S2 from './assets/Moodeng/Moodeng-hungrig1-smutsig2.svg';
 import H2S1 from './assets/Moodeng/Moodeng-hungrig2-smutsig1.svg';
 import H2S2 from './assets/Moodeng/Moodeng-hungrig2-smutsig2.svg';
 
-
-
 // bakgrund
 import vanligtRum from './assets/Moodeng/Defaultroom.svg'; 
 import uttråkad1 from './assets/Moodeng/rum-uttråkad1.svg'; 
@@ -48,28 +46,12 @@ const state = {
     room: vanligtRum
 }; 
 
+if (workComplete || homeComplete || freeComplete) {
+    updateMooDeng(); 
+}
+
 export default function MooDengState() {
-    
 
-    if (allComplete && state.kaos != true) {
-        state.happy = true;
-        state.mooBild = heartDeng; 
-    }
-
-    if (state.hunger == 2 && state.clean == 2 && state.play == 2) {
-        state.kaos = true;
-        state.mooBild = kaosDeng; 
-        state.room = uttråkad3; 
-    }
-    
-    
-    if (state.play == 1) {
-        state.room = uttråkad1; 
-    }
-    else if (state.play == 2 && !state.kaos) {
-        state.room = uttråkad2; 
-    }
-    
     return (
         <>
         <MooDeng 
@@ -107,100 +89,90 @@ function MooDeng(props) {
 
 }
 
-// happy (alla tasks complete) true/false
-// void function isHappy() {
-//     if (allComplete && props.kaos != true) {
-//         props.happy = true;
-//     }
+function updateMooDeng() {
+    // kolla om "work"-task är gjord och uppdatera hunger, bild på mat
+    if (workComplete && state.hunger > 0) {
+        state.hunger--; 
+    }
+    else if (!workComplete && state.hunger < 2) {
+        state.hunger++; 
+    }
 
+    // kolla om "home"-task är gjord och uppdatera clean, bild på bad
+    if (homeComplete && state.clean > 0) {
+        state.clean--; 
+    }
+    else if (!homeComplete && state.clean < 2) {
+        state.clean++; 
+    }
 
-// }
+    // kolla om "free"-task är gjord och uppdatera play
 
-// class MooDeng {
-//     constructor() {
-//         this.hunger = 0;
-//         this.clean = 0;
-//         this.play = 0;
-//         this.happy = false;
-//         this.kaos = false;
-//     }
+    if (freeComplete && state.play > 0) {
+        state.play--; 
+    }
+    else if (!freeComplete && state.play < 2) {
+        state.play++; 
+    }
 
-//     // Moodeng har tre stats + happy och kaos
-//     // hunger (work) 0-2
-//     // clean (home) 0-2
-//     // play (free) 0-2
+    isHappy(); 
+    isKaos();
+    displayMoodeng(); 
+    background(); 
+}
 
-//     // happy (alla tasks complete) true/false
-//     isHappy() {
-//         if (allComplete && this['kaos'] != true) {
-//             this['happy'] = true;
-//         }
-//     }
+// när alla dagens uppgifter är klara
 
-//     // kaos (alla stats = 2) true/false
-//     isKaos() {
-//         if (this.hunger == 2 && this.clean == 2 && this.play == 2) {
-//             this['kaos'] = true;
-//         }
-//     }
+function isHappy() {
+    if (allComplete && !state.kaos) {
+        state.happy = true;
+        state.mooBild = heartDeng; 
+    }
+}
 
+// om man inte gjort uppgifter på ett tag
+function isKaos() {
+    if (state.hunger == 2 && state.clean == 2 && state.play == 2) {
+        state.kaos = true;
+        state.mooBild = kaosDeng; 
+        state.room = uttråkad3; 
+    }
+}
 
+function displayMoodeng() {
+    // oändliga if-satser, visa rätt moodeng baserat på hunger+clean
+    if (state.hunger == 1) {
+        if (state.clean == 0) {
+            state.mooBild = H1; 
+        } else if (state.clean == 1) {
+            state.mooBild = H1S1; 
+        } else {
+            state.mooBild = H1S2; 
+        }
+    }
+    else if (state.hunger == 2) {
+        if (state.clean == 0) {
+            state.mooBild = H2; 
+        } else if (state.clean == 1) {
+            state.mooBild = H2S1; 
+        } else {
+            state.mooBild = H2S2; 
+        }
+    }
+    else if (state.clean == 1) {
+        state.mooBild = S1; 
+    }
+    else if (state.clean == 2) {
+        state.mooBild == S2; 
+    }
+}
 
-
-
-//     // if work task inte gjord +1 hunger etc
-
-//     // if work task gjord -1 hunger 
-
-//     // workDone
-//     workDone() {
-//         if (workComplete && this.hunger > 0) {
-//             this.hunger--; 
-//         }
-//         else if (!workComplete && this.hunger < 2) {
-//             this.hunger++; 
-//         }
-//     }
-
-//     // homeDone
-//     homeDone() {
-//         if (homeComplete && this.clean > 0) {
-//             this.clean--; 
-//         }
-//         else if (!homeComplete && this.clean < 2) {
-//             this.clean++; 
-//         }
-//     }
-
-//     // freeDone
-//     freeDone() {
-//         if (freeComplete && this.play > 0) {
-//             this.play--; 
-//         }
-//         else if (!freeComplete && this.play < 2) {
-//             this.play++; 
-//         }
-//     }
-
-//     mooDengState() {
-        
-//     }
-// }
-
-// const myMooDeng = new MooDeng();
-
-// export default function updateMooDeng(myMooDeng) {
-//     myMooDeng.workDone(); 
-//     myMooDeng.homeDone(); 
-//     myMooDeng.freeDone(); 
-//     myMooDeng.isHappy();
-//     myMooDeng.isKaos(); 
-//     console.log(myMooDeng); 
-    
-    
-// }
-
-// updateMooDeng(myMooDeng); 
-
-
-
+function background() {
+    // bestäm vilken backgrund m.a.p. play
+    if (state.play == 1) {
+        state.room = uttråkad1; 
+    }
+    else if (state.play == 2 && !state.kaos) {
+        state.room = uttråkad2; 
+    }
+}
