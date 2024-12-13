@@ -1,9 +1,11 @@
 import React from "react";
-import TaskObject from './TaskObject.jsx'
 import tasks from './TaskDataBase.json';
-
+import { useLocation } from "react-router-dom";
 export default function TaskDisplay(){
     // const taskDisplay = Task();
+    const location = useLocation();
+    console.log(location.state);
+
     return(
         <div className = 'taskContainer'>
             <div className = 'todo'>Today's tasks</div>

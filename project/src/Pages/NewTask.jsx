@@ -9,6 +9,7 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en-gb'
 import jsonData from '../TaskDatabase.json'
+import { Link } from "react-router-dom";
 
 
 export default function NewTask() {
@@ -78,7 +79,7 @@ function TaskCreator(buttonType){
                 return {...prev, deadline: date}})}/>
             </LocalizationProvider>
             </div>
-            <Button key = 'next' onClick={() => {console.log(taskData);navigate('/');saveToDatabase();}}>CONFIRM!</Button>
+            <Button key = 'next' onClick={() => {console.log(taskData);navigate('/', {state: taskData});saveToDatabase();}}>CONFIRM!</Button>
         </div>
     )
 }
