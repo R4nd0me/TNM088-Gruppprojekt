@@ -51,7 +51,7 @@ const [category, setCategory] = useState("");
 }
 function TaskCreator(buttonType){
     let navigate = useNavigate();
-    const [taskData, setTaskData] = useState({name: 'New Task', description : 'Description', progression : 0, deadline : dateConverter(dayjs().format('DD/MM/YY')), category: buttonType.buttonType.toLowerCase()});
+    const [taskData, setTaskData] = useState({name: 'New Task', description : 'Description', progression : 0, deadline : dateConverter(dayjs().format('DD/MM/YY')), category: buttonType.buttonType.toLowerCase(), completed:false});
 
     function dateConverter(dateString){
         const [day, month, year] = dateString.split('/'); // Split the string by '/'
