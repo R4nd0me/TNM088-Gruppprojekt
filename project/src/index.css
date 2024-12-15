@@ -238,6 +238,15 @@ border-radius: 10px !important;
   width: 390vw;
   transform: translate(-73vw, -100vh);
 }
+
+#new-day {
+  position: absolute; 
+  width: 150px;  
+  height: 50px;
+  transform: translate(5vw, 85vh);
+  z-index: 2;
+}
+
 .editButton{
 
 }
