@@ -1,6 +1,7 @@
-import React, { useState , useEffect} from "react";
-import { useLocation } from "react-router-dom";
-// import { updateMooDeng } from "./MooDengState";
+import React, { useState } from "react";
+import tasks from "./TaskDataBase.json";
+import { data, useLocation } from "react-router-dom";
+import MooDengState from "./MooDengState";
 import HouseIcon from "@mui/icons-material/House";
 import WorkIcon from "@mui/icons-material/Work";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
@@ -109,8 +110,19 @@ function Task({ data, detailed }) {
           disabled = {enable}
         ></Slider>
         </div>
-        {data.completed == true && detailed == false? <p className="taskDeadline">Done for today!</p>: null}
-        <div className="checkMark">
+      )}
+      {detailed ? (
+        <div className = "moreInfo">
+          {detailed ? (
+            <p className="taskDeadline">
+              Deadline: {data.deadline.day}/{data.deadline.month}/
+              {data.deadline.year}
+            </p>
+          ) : null}
+          <p className = "taskDeadline">Status : {data.completed ? "Completed!":"Incomplete!"}</p>
+        </div>
+      ) : null}
+        <div className="checkMark" id='submit'>
             <IconButton onClick={handleSlider}>
                 <CheckCircleOutlineIcon></CheckCircleOutlineIcon>
             </IconButton>

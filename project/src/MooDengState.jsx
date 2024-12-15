@@ -24,16 +24,14 @@ import uttråkad2 from './assets/Moodeng/rum-uttråkad2.svg';
 import uttråkad3 from './assets/Moodeng/rum-uttråkad3.svg';
 
 // smågrejs (bad o mat)
-import bad from './assets/Moodeng/bad.svg'; 
-import mat from './assets/Moodeng/mat.svg'; 
+import bad from './assets/Moodeng/bad.svg';
+import mat from './assets/Moodeng/mat.svg';
 
 
-// database stuff
-
-let workComplete = false;
-let homeComplete = false;
-let freeComplete = false;
-let allComplete = false;
+// let workComplete = false;
+// let homeComplete = false;
+// let freeComplete = false;
+// let allComplete = false;
 
 MooDeng.propTypes = {
     hunger: PropTypes.number,
@@ -65,6 +63,8 @@ MooDeng.propTypes = {
 function updateMooDeng(state) {
     
 console.log("uppdateState")
+function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
+    console.log("uppdateState")
     // let state = { 
     // hunger: 0, 
     // clean: 0, 
@@ -104,9 +104,25 @@ console.log("uppdateState")
 
     // när alla dagens uppgifter är klara
     // isHappy(state); 
-    if (allComplete && !state.kaos) {
+    let allComplete;
+    if (workComplete && homeComplete && freeComplete) {
+        allComplete = true;
+    } else allComplete = false;
+
+    let allZero;
+    if (newState.hunger == 0 && newState.clean == 0 && newState.play == 0) {
+        allZero = true; 
+    } 
+    else {
+        allZero = false; 
+    }
+
+    if (allComplete && allZero && !state.kaos) {
         newState.happy = true;
         newState.mooBild = heartDeng;
+    }
+    else {
+        newState.happy = false; 
     }
 
     // om man inte gjort uppgifter på ett tag
@@ -115,6 +131,9 @@ console.log("uppdateState")
         newState.kaos = true;
         newState.mooBild = kaosDeng;
         newState.room = uttråkad3;
+    }
+    else {
+        newState.kaos = false; 
     }
 
     // oändliga if-satser, visa rätt moodeng baserat på hunger+clean
@@ -138,6 +157,7 @@ console.log("uppdateState")
         }
     }
     else if (state.clean == 1) {
+        console.log("clean1" + S1); 
         newState.mooBild = S1;
     }
     else if (state.clean == 2) {
@@ -151,6 +171,9 @@ console.log("uppdateState")
     }
     else if (state.play == 2 && !state.kaos) {
         newState.room = uttråkad2;
+    }
+    else if (state.play == 0) {
+        newState.room = vanligtRum;
     }
 
     return newState;
@@ -181,44 +204,73 @@ const completedWorkTasks = tasks.filter(
         console.log("test", state);
     }, [state]);
 
+    // database stuff
+    let { tasks, setTasks } = useTasksContext();
 
-    console.log("state i MooDengState()", state);
+    let workComplete = false;
+    let homeComplete = false;
+    let freeComplete = false;
+
+    tasks.map((task) => {
+        console.log("task: " + task.category + task.completed); 
+        if (task.category === "work" && task.completed == true) {
+            workComplete = true;
+        } 
+        else if (task.category === "home" && task.completed == true) {
+            homeComplete = true;
+        } 
+        else if (task.category === "leisure" && task.completed == true) {
+            freeComplete = true;
+        } 
+    });
+
+    console.log("work i MooDengState()", workComplete);
     console.log("clean i MooDengState()", state.clean);
 
     function onClickUpdate() {
-        let tempState = updateMooDeng(state);
+        let tempState = updateMooDeng(state, workComplete, homeComplete, freeComplete);
         console.log("tempSTATE", tempState);
         setState(tempState);
         let mooImg = document.getElementById("MooDeng");
         mooImg.src = tempState.mooBild;
-        let roomImg = document.getElementById("room"); 
-        roomImg.src = tempState.room; 
+        let roomImg = document.getElementById("room");
+        roomImg.src = tempState.room;
+
+        setTasks((prevTasks) => 
+            prevTasks.map((task) => 
+                task.complete == true ? { ...task, completed : false} : task
+            )
+        );
     }
+
+    // document.getElementsByClass('submit').addEventListener("click", onClickUpdate);
+
 
     return (
         <>
+            
+            <button id='new-day' onClick={onClickUpdate}>New Day</button>
             <Extras></Extras>
-            <button onClick={onClickUpdate}>
-                <MooDeng
-                    hunger={state.hunger}
-                    clean={state.clean} 
-                    play={state.play} 
-                    happy={state.happy} 
-                    kaos={state.kaos}
-                    mooBild={state.mooBild}
-                    room={state.room}
-                />
-            </button>
+            <MooDeng
+                hunger={state.hunger}
+                clean={state.clean}
+                play={state.play}
+                happy={state.happy}
+                kaos={state.kaos}
+                mooBild={state.mooBild}
+                room={state.room}
+            />
+
 
         </>
     )
 }
 
 function Extras() {
-    return(
+    return (
         <>
-            <img id='room_bad' src={bad}/>
-            <img id='room_mat' src={mat}/>
+            <img id='room_bad' src={bad} />
+            <img id='room_mat' src={mat} />
         </>
     )
 }
@@ -245,12 +297,11 @@ function MooDeng(props) {
 
 
 
-
 // när alla dagens uppgifter är klara
 // function isHappy(state) {
 //     if (allComplete && !state.kaos) {
 //         state.happy = true;
-//         state.mooBild = heartDeng; 
+//         state.mooBild = heartDeng;
 //     }
 // }
 
@@ -258,8 +309,8 @@ function MooDeng(props) {
 // function isKaos(state) {
 //     if (state.hunger == 2 && state.clean == 2 && state.play == 2) {
 //         state.kaos = true;
-//         state.mooBild = kaosDeng; 
-//         state.room = uttråkad3; 
+//         state.mooBild = kaosDeng;
+//         state.room = uttråkad3;
 //     }
 // }
 
@@ -267,27 +318,27 @@ function MooDeng(props) {
 //     // oändliga if-satser, visa rätt moodeng baserat på hunger+clean
 //     if (state.hunger == 1) {
 //         if (state.clean == 0) {
-//             state.mooBild = H1; 
+//             state.mooBild = H1;
 //         } else if (state.clean == 1) {
-//             state.mooBild = H1S1; 
+//             state.mooBild = H1S1;
 //         } else {
-//             state.mooBild = H1S2; 
+//             state.mooBild = H1S2;
 //         }
 //     }
 //     else if (state.hunger == 2) {
 //         if (state.clean == 0) {
-//             state.mooBild = H2; 
+//             state.mooBild = H2;
 //         } else if (state.clean == 1) {
-//             state.mooBild = H2S1; 
+//             state.mooBild = H2S1;
 //         } else {
-//             state.mooBild = H2S2; 
+//             state.mooBild = H2S2;
 //         }
 //     }
 //     else if (state.clean == 1) {
-//         state.mooBild = S1; 
+//         state.mooBild = S1;
 //     }
 //     else if (state.clean == 2) {
-//         state.mooBild == S2; 
+//         state.mooBild == S2;
 //     }
 // }
 
