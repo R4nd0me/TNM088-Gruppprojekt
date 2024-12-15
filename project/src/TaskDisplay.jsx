@@ -5,12 +5,13 @@ import { updateMooDeng } from "./MooDengState";
 import HouseIcon from '@mui/icons-material/House';
 import WorkIcon from '@mui/icons-material/Work';    
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
-import { Slider } from "@mui/material";
+import { IconButton, Slider } from "@mui/material";
+import NoteAltIcon from '@mui/icons-material/NoteAlt';
 
 let database = [
-    { "_id" : 0, "category" : "work", "name" : "Work on joe", "description" : "I gotta help joe", "progress" : 10, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false},
-    { "_id" : 1, "category" : "leisure", "name" : "Work on moe", "description" : "Help moe", "progress" : 1, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false},
-    { "_id" : 2, "category" : "home", "name" : "Work on poe", "description" : "chillax", "progress" : 1, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false}
+    { "_id" : 0, "category" : "work", "name" : "Finish project", "description" : "I gotta help joe", "progress" : 10, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false},
+    { "_id" : 1, "category" : "leisure", "name" : "Exercise", "description" : "Help moe", "progress" : 37, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false},
+    { "_id" : 2, "category" : "home", "name" : "Clean dishes", "description" : "chillax", "progress" : 1, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false}
     ];
 
 export default function TaskDisplay({detailed}){
@@ -45,13 +46,14 @@ function Task({data, detailed}){
         return;
     }
     console.log(detailed); 
+    const [toggle, setToggle] = useState("false");
     return(
         <div className = "task" id = {data.cate}>
             <p>
             {(() => {
                 switch(data.category) {
                     case 'home':
-                        return(<HouseIcon></HouseIcon>);
+                        return(<HouseIcon onClick = {() => (setToggle = true)}></HouseIcon>);
                     case 'work':
                         return(<WorkIcon></WorkIcon>);
                     case 'leisure':
@@ -59,10 +61,11 @@ function Task({data, detailed}){
                 }
             })()}
                 {data.name}
+                <IconButton aria-label="complete"><NoteAltIcon></NoteAltIcon></IconButton>
             </p>
 
             {detailed ? <p>Description: {data.description}</p> : console.log("TASK NOT FOUND")}
-            <Slider disabled defaultValue={data.progress} size = "medium"></Slider>
+            {detailed ? <div></div> :<Slider disabled = {toggle} defaultValue={data.progress} size = "medium"></Slider>}
         </div>
     )
 }

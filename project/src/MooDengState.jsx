@@ -21,9 +21,9 @@ import uttråkad1 from './assets/Moodeng/rum-uttråkad1.svg';
 import uttråkad2 from './assets/Moodeng/rum-uttråkad2.svg'; 
 import uttråkad3 from './assets/Moodeng/rum-uttråkad3.svg'; 
 
-// let workComplete = false;
-// let homeComplete = false;
-// let freeComplete = false;
+let workComplete = false;
+let homeComplete = false;
+let freeComplete = false;
 let allComplete = false;
 
 MooDeng.propTypes = {
@@ -38,18 +38,18 @@ MooDeng.propTypes = {
 
  
 let state = { 
-    hunger: 0, 
-    clean: 0, 
-    play: 0, 
+    hunger: 2, 
+    clean: 2, 
+    play: 2, 
     happy: false, 
     kaos: false, 
     mooBild: vanligDeng,
     room: vanligtRum
 }; 
 
-// if (workComplete || homeComplete || freeComplete) {
-//     updateMooDeng(); 
-// }
+if (workComplete || homeComplete || freeComplete) {
+    updateMooDeng(); 
+}
 
 export function updateMooDeng(workComplete, homeComplete, freeComplete) {
 
@@ -91,7 +91,7 @@ export function updateMooDeng(workComplete, homeComplete, freeComplete) {
 export default function MooDengState() {
     console.log(state); 
 
-   // updateMooDeng(); 
+    updateMooDeng(); 
    
 
     return (

@@ -17,7 +17,7 @@ export default function NavigationBar(){
             <IconButton aria-label='New'><AddCircleIcon sx = {{fontSize:40}}></AddCircleIcon></IconButton>
             </Link>
             <Link to = '/viewtasks'>
-            <IconButton aria-label='New'><AssignmentIcon sx = {{fontSize:40}}></AssignmentIcon></IconButton>
+            <IconButton aria-label='View'><AssignmentIcon sx = {{fontSize:40}}></AssignmentIcon></IconButton>
             </Link>
         </div>
     )
