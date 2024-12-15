@@ -182,7 +182,7 @@ function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
 export default function MooDengState() {
 
     // updateMooDeng(); 
-    const {tasks} = useTasksContext();
+    const {tasks, setTasks} = useTasksContext();
 
 const completedWorkTasks = tasks.filter(
     (task) => task.category === "work" && task.completed === true
@@ -205,7 +205,6 @@ const completedWorkTasks = tasks.filter(
     }, [state]);
 
     // database stuff
-    let { tasks, setTasks } = useTasksContext();
 
     let workComplete = false;
     let homeComplete = false;
