@@ -46,14 +46,14 @@ function Task({data, detailed}){
         return;
     }
     let [toggle, setToggle] = useState(true);
-    let [confirm, setConfirm] = useState(true);
     let [sliderValue, setValue] = useState(data.progress);
     function toggleEdit(){
         setToggle((prevState) => !prevState);
-        setConfirm((prevState) => !prevState);  
-        console.log("clicked");
     }
-
+    function handleSlider(){
+        console.log("Slider value : ", sliderValue);
+        setToggle((prevState) => !prevState);
+    }
     return(
         <div className = "task" id = {data.cate}>
             <p>
@@ -69,10 +69,10 @@ function Task({data, detailed}){
             })()}
                 {data.name}
                 <IconButton aria-label="complete" onClick={toggleEdit}><NoteAltIcon></NoteAltIcon></IconButton>
-                <IconButton disabled = {toggle} onClick ={toggleEdit}><CheckCircleOutlineIcon></CheckCircleOutlineIcon></IconButton>
+                <IconButton disabled = {toggle} onClick ={handleSlider}><CheckCircleOutlineIcon></CheckCircleOutlineIcon></IconButton>
             </p>
             {detailed ? <p>Description: {data.description}</p> : null}
-            {detailed ? null :<Slider disabled = {toggle} defaultValue={data.progress}size = "medium"></Slider>}
+            {detailed ? null :<Slider disabled = {toggle} defaultValue={data.progress}size = "medium" onChange={(e,value) => (setValue(value))}></Slider>}
             {detailed ? <div><p>Deadline: {}</p></div>: null}
         </div>
     )
