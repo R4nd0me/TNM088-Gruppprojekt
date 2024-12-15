@@ -224,6 +224,20 @@ border-radius: 10px !important;
   transform: translate(-37vw, -39vh); 
   position: fixed; 
 }
+
+#room_bad {
+  position: absolute;
+  width: 250vw; 
+  z-index: 1; 
+  transform: translate(-35vw, -35.5vh);
+}
+
+#room_mat {
+  position: absolute;
+  z-index: 1;
+  width: 390vw;
+  transform: translate(-73vw, -100vh);
+}
 .editButton{
 
 }
