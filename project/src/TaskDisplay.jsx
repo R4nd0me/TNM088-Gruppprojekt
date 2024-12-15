@@ -58,7 +58,6 @@ function Task({data, detailed}){
 
     /*
                 <IconButton aria-label="complete" onClick={toggleEdit}><NoteAltIcon></NoteAltIcon></IconButton>
-                <IconButton disabled = {toggle} onClick ={handleSlider}><CheckCircleOutlineIcon></CheckCircleOutlineIcon></IconButton>
     */
     return(
         <div className = "task" id = {data.cate}>
@@ -74,6 +73,7 @@ function Task({data, detailed}){
                 }
             })()}
                 {data.name}
+                <IconButton disabled = {toggle} onClick ={handleSlider}><CheckCircleOutlineIcon></CheckCircleOutlineIcon></IconButton>
             </p>
             {detailed ? <p>Description: {data.description}</p> : null}
             {detailed ? null :<Slider defaultValue={data.progress}size = "medium" onChange={(e,value) => (setValue(value))}></Slider>}
