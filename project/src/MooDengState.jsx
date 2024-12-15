@@ -61,7 +61,6 @@ MooDeng.propTypes = {
 
 
 function updateMooDeng(state) {
-    
 console.log("uppdateState")
 function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
     console.log("uppdateState")
@@ -182,6 +181,7 @@ function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
 export default function MooDengState() {
 
     // updateMooDeng(); 
+<<<<<<< HEAD
     const {tasks, setTasks} = useTasksContext();
 
 const completedWorkTasks = tasks.filter(
@@ -189,6 +189,8 @@ const completedWorkTasks = tasks.filter(
   );
 
   console.log("Filtered Tasks:", completedWorkTasks);
+=======
+>>>>>>> parent of f98f27c (test merge)
 
     const [state, setState] = useState({
         hunger: 0,
