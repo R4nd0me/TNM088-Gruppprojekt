@@ -33,8 +33,8 @@ export default function TaskDisplay({detailed}){
     return(
         <div className = 'taskContainer'>
             {detailed ?
-            <div className = 'todo'>Current Tasks:{database.map((data, index) => <Task key = {index} data = {data} detailed = {true}/>)}</div>
-            :<div className = 'todo'>Today's tasks{test3.map((data, index) => <Task key = {index} data = {data} detailed = {false}/>)}</div>}
+            <div className = 'todo'><p>Current Tasks:</p>{database.map((data, index) => <Task key = {index} data = {data} detailed = {true}/>)}</div>
+            :<div className = 'todo'><p className="today">Todays tasks</p>{test3.map((data, index) => <Task key = {index} data = {data} detailed = {false}/>)}</div>}
         </div>
         
     )
@@ -46,14 +46,18 @@ function Task({data, detailed}){
         return;
     }
     console.log(detailed); 
-    const [toggle, setToggle] = useState("false");
+    let [toggle, setToggle] = useState(false);
+    function toggleEdit(){
+        setToggle = false;
+    }
+
     return(
         <div className = "task" id = {data.cate}>
             <p>
             {(() => {
                 switch(data.category) {
                     case 'home':
-                        return(<HouseIcon onClick = {() => (setToggle = true)}></HouseIcon>);
+                        return(<HouseIcon></HouseIcon>);
                     case 'work':
                         return(<WorkIcon></WorkIcon>);
                     case 'leisure':
@@ -61,11 +65,12 @@ function Task({data, detailed}){
                 }
             })()}
                 {data.name}
-                <IconButton aria-label="complete"><NoteAltIcon></NoteAltIcon></IconButton>
+                <IconButton aria-label="complete" onClick={toggleEdit}><NoteAltIcon className="confirmButton"></NoteAltIcon></IconButton>
             </p>
 
             {detailed ? <p>Description: {data.description}</p> : console.log("TASK NOT FOUND")}
             {detailed ? <div></div> :<Slider disabled = {toggle} defaultValue={data.progress} size = "medium"></Slider>}
+            {detailed ? <div><p>Deadline: {}</p></div>: <div></div>}
         </div>
     )
 }
