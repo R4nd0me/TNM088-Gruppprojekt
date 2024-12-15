@@ -19,6 +19,7 @@ const TasksContext = createContext(undefined)
   
   export const useTasksContext = () => {
     const context = useContext(TasksContext)
+    console.log(context)
     if (!context) {
       throw new Error(
         "useTasksContext must be used within a TasksContextProvider"
