@@ -5,9 +5,10 @@ const TasksContext = createContext(undefined)
     children
   }) => {
     const [tasks, setTasks] = useState([
-        { "_id" : 0, "category" : "work", "name" : "Finish project", "description" : "Finish", "progress" : 10, "deadline" : {"day": 18, "month" : 12, "year" : 2024}, "size" : 10, "priority" : null, "completed" : false},
-        { "_id" : 1, "category" : "leisure", "name" : "Exercise", "description" : "Help moe", "progress" : 37, "deadline" : {"day": 0, "month" : 0, "year" : 0}, "size" : 10, "priority" : null, "completed" : false},
-        { "_id" : 2, "category" : "home", "name" : "Clean dishes", "description" : "chillax", "progress" : 1, "deadline" : {"day": 0, "month" : 0, "year" : 0}, "size" : 10, "priority" : null, "completed" : false}
+        { "_id" : 0, "category" : "work", "name" : "Finish project", "description" : "Finish TNM040 Project!", "progress" : 10, "deadline" : {day: 18, month : 12, year: 2024}, "size" : 10, "priority" : null, "completed" : false},
+        { "_id" : 1, "category" : "home", "name" : "Clean dishes", "description" : "Clean dirty dishes", "progress" : 1, "deadline" : null, "size" : 10, "priority" : null, "completed" : false},
+        { "_id" : 2, "category" : "leisure", "name" : "Exercise", "description" : "Do some yoga", "progress" : 37, "deadline" : null, "size" : 10, "priority" : null, "completed" : false}
+        
     ])
   
     return (

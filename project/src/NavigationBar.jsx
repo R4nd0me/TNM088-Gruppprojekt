@@ -8,10 +8,16 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 export default function NavigationBar(){
 
     const navigate = useNavigate();
+    const [current, setCurrent] = useState(false);
+    const [color, setColor] = useState("")
+    function handleClick(){
+        setCurrent((state) => (!state));
+        current ? setColor("#4200ff") : null;
+    }
     return (
         <div className="navbar">
             <Link to = '/settings'>
-            <IconButton aria-label='Settings'><SettingsIcon sx = {{fontSize:40}}></SettingsIcon></IconButton>
+            <IconButton aria-label='Settings' onClick={handleClick}><SettingsIcon sx = {{fontSize:40, color: {color}}}></SettingsIcon></IconButton>
             </Link>
             <Link to = '/new'>
             <IconButton aria-label='New'><AddCircleIcon sx = {{fontSize:40}}></AddCircleIcon></IconButton>

@@ -63,6 +63,7 @@ MooDeng.propTypes = {
 
 
 function updateMooDeng(state) {
+    
 console.log("uppdateState")
     // let state = { 
     // hunger: 0, 
@@ -158,6 +159,13 @@ console.log("uppdateState")
 export default function MooDengState() {
 
     // updateMooDeng(); 
+    const {tasks} = useTasksContext();
+
+const completedWorkTasks = tasks.filter(
+    (task) => task.category === "work" && task.completed === true
+  );
+
+  console.log("Filtered Tasks:", completedWorkTasks);
 
     const [state, setState] = useState({
         hunger: 0,
