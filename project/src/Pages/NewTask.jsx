@@ -35,10 +35,11 @@ const [category, setCategory] = useState("");
         <div className="category">
             {!visibility && (
                 <>
-                    <p>Choose a category</p>
+                    <p className="categoryTitle">Choose a category</p>
                     <ButtonGroup orientation="vertical">
                         {buttons.map((button, index) => (
-                            <Button key={index} onClick={() => {
+                            <Button key={index} className={`categoryButton_${index}`}
+                             onClick={() => {
                                 setCategory(button.key);
                                 toggleVisibility();}}>
                                 {button.props.children}

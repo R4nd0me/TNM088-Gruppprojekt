@@ -83,17 +83,66 @@ body{
   width:80%;
 }
 .category{
-  width: 40vw;
+  width: 90%;
   display:flex;
   align-self: center;
   align-items: center;
   justify-content:center;
   flex-direction: column;
-  background-color:azure;
+  background-color: rgba(217, 217, 217, 0.65);
   position:fixed;
-  top:20vh;
+  top:45vh;
   animation: slide-in-bottom 0.5s ease-out;
+  border-radius: 10px;
+  padding-bottom:14px;
 }
+.categoryTitle{
+  font-size: 30px;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+
+}
+/* Important läggs till för att override Material UI */
+/* new task Workbutton */
+.categoryButton_0{
+  color: white !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
+background-color:rgba(5, 165, 255, 0.65) !important;
+font-size: large !important;
+width: 80vw  !important;
+padding-top: 20px !important;
+padding-bottom: 20px !important;
+margin-top:4px !important;
+margin-bottom:4px !important;
+border-radius: 10px !important;
+}
+/* new task Homebutton */
+.categoryButton_1{
+  color: white !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
+background-color:rgba(66, 0, 255, 0.65) !important;
+font-size: large !important;
+width: 80vw  !important;
+padding-top: 20px !important;
+padding-bottom: 20px !important;
+margin-top:4px !important;
+margin-bottom:4px !important;
+border-radius: 10px !important;
+}
+/* new task Leasurebutton */
+.categoryButton_2{
+  color: white !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
+background-color:rgba(189, 0, 255, 0.65) !important;
+font-size: large !important;
+width: 80vw  !important;
+padding-top: 20px !important;
+padding-bottom: 20px !important;
+margin-top:4px !important;
+margin-bottom:4px !important;
+border-radius: 10px !important;
+}
+
 .taskCreation{
   display:flex;
   align-self: center;
