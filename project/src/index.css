@@ -49,34 +49,61 @@ body{
   display:flex;
   align-self: center;
   align-items: center;
-  justify-content:center;
   flex-direction: column;
   width : 80vw;
-  margin-bottom: 10%;
-  opacity: 0.8;
   position:fixed;
-  top:1%;
+  top:10px;
   animation: slide-in-bottom 0.5s ease-out;
-  height : 60vh;
+  max-height : 80vh;
   overflow: scroll;
-  border:solid 3px;
+  
+}
+.checkMark{
+ width:100%;
+ display:flex;
+ justify-content:end;
+}
+.checkMarkButton{
+ padding:0 !important;
+ margin:0 !important;
 }
 .task{
   background-color: azure;
   border-radius: 15px;
-  width:72vw;
+  padding: 8px;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+.taskSlider{
+  padding-left:15px;
+  padding-right:15px;
+}
+.taskDescription{
+  font-size: 16px;
+  margin-left: 8px;
+}
+.taskDeadline{
+  font-size: 16px;
+  margin-left: 8px;
+  margin-bottom: 8px;
+}
+
+.taskTitle{
+  font-size:24px;
+  margin: 4px;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
 }
 .todo{
-  align-content: center;
-  border: solid 1px;
-  width: 90%;
-  
+  width: 90%; 
 }
 .todoTitle{
   font-size: 40px;
   color: white;
   text-shadow: 1px 1px 6px rgba(0, 0, 0, 1);
-  /* border: solid 1px; */
+  text-align: center;
+  margin:20px
 }
 .return{
   position: absolute;

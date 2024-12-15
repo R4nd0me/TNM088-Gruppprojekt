@@ -29,7 +29,7 @@ export default function TaskDisplay({ detailed }) {
   let check = detailed;
   return (
     <div className="taskContainer">
-    {detailed ? <p className="todoTitle">Current Tasks:</p> : <p className="today">Todays tasks</p>}
+    {detailed ? <p className="todoTitle">Current Tasks:</p> : <p className="todoTitle">Todays tasks</p>}
       {detailed ? (
         <div className="todo">
           {tasks.map((data, index) => (
@@ -78,7 +78,7 @@ function Task({ data, detailed }) {
     */
   return (
     <div className="task" id={data.cate}>
-      <p>
+      <p className="taskTitle">
         {(() => {
           switch (data.category) {
             case "home":
@@ -90,12 +90,10 @@ function Task({ data, detailed }) {
           }
         })()}
         {data.name}
-        <IconButton onClick={handleSlider}>
-          <CheckCircleOutlineIcon></CheckCircleOutlineIcon>
-        </IconButton>
       </p>
-      {detailed ? <p>Description: {data.description}</p> : null}
+      {detailed ? <p className="taskDescription">Description: {data.description}</p> : null}
       {detailed ? null : (
+        <div className="taskSlider">
         <Slider
           valueLabelDisplay="auto"
           min={0}
@@ -105,17 +103,23 @@ function Task({ data, detailed }) {
           size="medium"
           onChange={(_, value) => setValue(value)}
         ></Slider>
+        </div>
       )}
       {detailed ? (
         <div>
           {detailed ? (
-            <p>
+            <p className="taskDeadline">
               Deadline: {data.deadline.day}/{data.deadline.month}/
               {data.deadline.year}
             </p>
           ) : null}
         </div>
       ) : null}
+        <div className="checkMark">
+            <IconButton onClick={handleSlider}>
+                <CheckCircleOutlineIcon></CheckCircleOutlineIcon>
+            </IconButton>
+        </div>
     </div>
   );
 }
