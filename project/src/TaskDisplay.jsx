@@ -51,8 +51,9 @@ function Task({data, detailed}){
         setToggle((prevState) => !prevState);
     }
     function handleSlider(){
-        console.log("Slider value : ", sliderValue);
+        //console.log("Slider value : ", sliderValue);
         setToggle((prevState) => !prevState);
+        data.progress = sliderValue;
     }
     return(
         <div className = "task" id = {data.cate}>
@@ -72,7 +73,7 @@ function Task({data, detailed}){
                 <IconButton disabled = {toggle} onClick ={handleSlider}><CheckCircleOutlineIcon></CheckCircleOutlineIcon></IconButton>
             </p>
             {detailed ? <p>Description: {data.description}</p> : null}
-            {detailed ? null :<Slider disabled = {toggle} defaultValue={data.progress}size = "medium" onChange={(e,value) => (setValue(value))}></Slider>}
+            {detailed ? null :<Slider defaultValue={data.progress}size = "medium" onChange={(e,value) => (setValue(value))}></Slider>}
             {detailed ? <div><p>Deadline: {}</p></div>: null}
         </div>
     )
