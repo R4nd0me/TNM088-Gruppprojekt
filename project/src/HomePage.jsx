@@ -11,7 +11,7 @@ import MooDengState from './MooDengState.jsx'
 export default function HomePage(){
     return(
         <>
-        <TaskDisplay></TaskDisplay>
+        <TaskDisplay detailed = {false}></TaskDisplay>
         </>
     )
 }
