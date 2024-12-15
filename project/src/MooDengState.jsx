@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
+import { useTasksContext } from "./context/DatabaseContext";
 
 // vanlig och "extrema" moodengs
 import vanligDeng from './assets/Moodeng/Moodeng-vanlig.svg';
@@ -21,6 +22,13 @@ import vanligtRum from './assets/Moodeng/Defaultroom.svg';
 import uttråkad1 from './assets/Moodeng/rum-uttråkad1.svg';
 import uttråkad2 from './assets/Moodeng/rum-uttråkad2.svg';
 import uttråkad3 from './assets/Moodeng/rum-uttråkad3.svg';
+
+// smågrejs (bad o mat)
+import bad from './assets/Moodeng/bad.svg'; 
+import mat from './assets/Moodeng/mat.svg'; 
+
+
+// database stuff
 
 let workComplete = false;
 let homeComplete = false;
@@ -147,9 +155,6 @@ console.log("uppdateState")
     return newState;
 }
 
-
-
-
 export default function MooDengState() {
 
     // updateMooDeng(); 
@@ -184,6 +189,7 @@ export default function MooDengState() {
 
     return (
         <>
+            <Extras></Extras>
             <button onClick={onClickUpdate}>
                 <MooDeng
                     hunger={state.hunger}
@@ -195,6 +201,16 @@ export default function MooDengState() {
                     room={state.room}
                 />
             </button>
+
+        </>
+    )
+}
+
+function Extras() {
+    return(
+        <>
+            <img id='room_bad' src={bad}/>
+            <img id='room_mat' src={mat}/>
         </>
     )
 }
@@ -218,6 +234,7 @@ function MooDeng(props) {
     )
 
 }
+
 
 
 
