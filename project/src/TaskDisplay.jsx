@@ -48,15 +48,6 @@ export default function TaskDisplay({ detailed }) {
   );
 }
 
-let names = [{ name: "joe" }, { name: "moe" }];
-let test = names.find((person) => {
-  if (person.name == "moe") {
-    return true;
-  } else {
-    return false;
-  }
-});
-test.name = "mamma";
 
 function Task({ data, detailed }) {
   if (data == null) {
@@ -64,16 +55,17 @@ function Task({ data, detailed }) {
   }
   let [sliderValue, setValue] = useState(data.progress);
   let { setTasks } = useTasksContext();
-  let [iconColor, setColor] = useState();
+  let [enable, toggleEnable] = useState(false);
   function handleSlider() {
     //console.log("Slider value : ", sliderValue);
     setTasks((prevTasks) => 
         prevTasks.map((task) => 
             task._id === data._id 
-                ? { ...task, progress: sliderValue, name: task.name + "+"} 
+                ? { ...task, progress: sliderValue, completed : true} 
                 : task
         )
     );
+    toggleEnable((prevState) => (!prevState));
   }
   /*
                 <IconButton aria-label="complete" onClick={toggleEdit}><NoteAltIcon></NoteAltIcon></IconButton>
@@ -98,23 +90,26 @@ function Task({ data, detailed }) {
         <div className="taskSlider">
         <Slider
           valueLabelDisplay="auto"
+          valueLabelFormat={(sliderValue) => `${sliderValue}%`}
           min={0}
           max={100}
           step={1}
           value={sliderValue}
           size="medium"
           onChange={(_, value) => setValue(value)}
+          disabled = {enable}
         ></Slider>
         </div>
       )}
       {detailed ? (
-        <div>
+        <div className = "moreInfo">
           {detailed ? (
             <p className="taskDeadline">
               Deadline: {data.deadline.day}/{data.deadline.month}/
               {data.deadline.year}
             </p>
           ) : null}
+          <p className = "taskDeadline">Status : {data.completed ? "Completed!":"Incomplete!"}</p>
         </div>
       ) : null}
         <div className="checkMark">

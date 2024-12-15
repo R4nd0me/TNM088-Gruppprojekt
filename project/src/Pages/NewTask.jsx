@@ -8,7 +8,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en-gb'
-import { Link } from "react-router-dom";
+import { useTasksContext } from "../context/DatabaseContext"; 
 /*
 
 */
@@ -54,7 +54,8 @@ const [category, setCategory] = useState("");
 }
 function TaskCreator(buttonType){
     let navigate = useNavigate();
-    const [taskData, setTaskData] = useState({name: 'New Task', description : 'Description', progression : 0, size: 0, deadline : dateConverter(dayjs().format('DD/MM/YY')), category: buttonType.buttonType.toLowerCase(), completed:false});
+    const {tasks} = useTasksContext();
+    const [taskData, setTaskData] = useState({_id: tasks.length, name: 'New Task', description : 'Description', progression : 0, size: 0, deadline : dateConverter(dayjs().format('DD/MM/YY')), category: buttonType.buttonType.toLowerCase(), completed:false});
 
     function dateConverter(dateString){
         const [day, month, year] = dateString.split('/'); // Split the string by '/'
@@ -67,6 +68,7 @@ function TaskCreator(buttonType){
     function saveToDatabase(){
         console.log(jsonData);
     }
+
     return(
         <div className="taskCreation">
             <p>Enter Name</p>

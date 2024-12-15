@@ -7,7 +7,7 @@ import { TasksContextProvider } from './context/DatabaseContext.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <TasksContextProvider>    
-      <App />
+      <App/>
     </TasksContextProvider>
 
   </StrictMode>,
