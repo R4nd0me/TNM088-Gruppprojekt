@@ -9,6 +9,7 @@ import { IconButton, Slider } from "@mui/material";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { useTasksContext } from "./context/DatabaseContext";
+    import { pink } from "@mui/material/colors";
 
 export default function TaskDisplay({ detailed }) {
   // när ett task är completed:
@@ -63,6 +64,7 @@ function Task({ data, detailed }) {
   }
   let [sliderValue, setValue] = useState(data.progress);
   let { setTasks } = useTasksContext();
+  let [iconColor, setColor] = useState();
   function handleSlider() {
     //console.log("Slider value : ", sliderValue);
     setTasks((prevTasks) => 
@@ -82,7 +84,7 @@ function Task({ data, detailed }) {
         {(() => {
           switch (data.category) {
             case "home":
-              return <HouseIcon></HouseIcon>;
+              return <HouseIcon sx = {{color:pink[500]}}></HouseIcon>;
             case "work":
               return <WorkIcon></WorkIcon>;
             case "leisure":
