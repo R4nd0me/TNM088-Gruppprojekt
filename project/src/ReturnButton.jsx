@@ -10,7 +10,7 @@ export default function ReturnButton(){
     if (pathname != '/'){
     return (
         <div className = 'return'>
-            <IconButton size = 'large' onClick={() => {navigate('/')}}><KeyboardReturnIcon></KeyboardReturnIcon></IconButton>
+            <IconButton size = 'large' onClick={() => {navigate('/')}}><KeyboardReturnIcon sx = {{fontSize: 40}}></KeyboardReturnIcon></IconButton>
         </div>
     )
     }
