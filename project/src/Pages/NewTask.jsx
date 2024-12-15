@@ -53,7 +53,7 @@ const [category, setCategory] = useState("");
 }
 function TaskCreator(buttonType){
     let navigate = useNavigate();
-    const [taskData, setTaskData] = useState({name: 'New Task', description : 'Description', progression : 0, deadline : dateConverter(dayjs().format('DD/MM/YY')), category: buttonType.buttonType.toLowerCase(), completed:false});
+    const [taskData, setTaskData] = useState({name: 'New Task', description : 'Description', progression : 0, size: 0, deadline : dateConverter(dayjs().format('DD/MM/YY')), category: buttonType.buttonType.toLowerCase(), completed:false});
 
     function dateConverter(dateString){
         const [day, month, year] = dateString.split('/'); // Split the string by '/'
@@ -68,12 +68,12 @@ function TaskCreator(buttonType){
     }
     return(
         <div className="taskCreation">
-            <p>TaskName</p>
+            <p>Enter Name</p>
             <input type = "text" placeholder=" name..." onChange={e => setTaskData((prev) => {return {...prev, name: e.target.value}})} value = {taskData.name}></input>
-            <p>TaskDesc</p>
+            <p>Enter Description</p>
             <input type = "text" placeholder=" description..." onChange={e => setTaskData((prev) => {return {...prev, description: e.target.value}})} value = {taskData.description}></input>
-            <p>Task Prog</p>
-            <div className = 'sliderContainer'><Slider aria-label="TaskProg"valueLabelDisplay="auto" min={0} max = {100} onChange={(_, value) => setTaskData((prev) => {return {... prev, progression: value}})}></Slider></div>
+            <p>Task Size</p>
+            <div className = 'sliderContainer'><Slider aria-label="TaskProg"valueLabelDisplay="auto" min={0} max = {100} onChange={(_, value) => setTaskData((prev) => {return {... prev, size: value}})}></Slider></div>
             <p>Deadline</p>
             <div className = 'datePicker'>
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">

@@ -12,7 +12,7 @@ import { useState } from "react";
 function Information(){
     const [visibility, setVisibility] = useState(false);
     return (
-        <Link to ='/settings'>
+        <Link to ='/info'>
             <div className="info">
                 <IconButton><HelpIcon sx = {{fontSize:40,color:"azure"}}></HelpIcon></IconButton>
             </div>

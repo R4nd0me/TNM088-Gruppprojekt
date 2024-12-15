@@ -7,6 +7,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 import { IconButton, Slider } from "@mui/material";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 let database = [
     { "_id" : 0, "category" : "work", "name" : "Finish project", "description" : "I gotta help joe", "progress" : 10, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false},
@@ -29,7 +30,6 @@ export default function TaskDisplay({detailed}){
     }
     let test3 = database.slice(0,3);
     let check = detailed;
-    console.log(detailed)
     return(
         <div className = 'taskContainer'>
             {detailed ?
@@ -45,10 +45,13 @@ function Task({data, detailed}){
     if (data == null){
         return;
     }
-    console.log(detailed); 
-    let [toggle, setToggle] = useState(false);
+    let [toggle, setToggle] = useState(true);
+    let [confirm, setConfirm] = useState(true);
+    let [sliderValue, setValue] = useState(data.progress);
     function toggleEdit(){
-        setToggle = false;
+        setToggle((prevState) => !prevState);
+        setConfirm((prevState) => !prevState);  
+        console.log("clicked");
     }
 
     return(
@@ -65,12 +68,12 @@ function Task({data, detailed}){
                 }
             })()}
                 {data.name}
-                <IconButton aria-label="complete" onClick={toggleEdit}><NoteAltIcon className="confirmButton"></NoteAltIcon></IconButton>
+                <IconButton aria-label="complete" onClick={toggleEdit}><NoteAltIcon></NoteAltIcon></IconButton>
+                <IconButton disabled = {toggle} onClick ={toggleEdit}><CheckCircleOutlineIcon></CheckCircleOutlineIcon></IconButton>
             </p>
-
-            {detailed ? <p>Description: {data.description}</p> : console.log("TASK NOT FOUND")}
-            {detailed ? <div></div> :<Slider disabled = {toggle} defaultValue={data.progress} size = "medium"></Slider>}
-            {detailed ? <div><p>Deadline: {}</p></div>: <div></div>}
+            {detailed ? <p>Description: {data.description}</p> : null}
+            {detailed ? null :<Slider disabled = {toggle} defaultValue={data.progress}size = "medium"></Slider>}
+            {detailed ? <div><p>Deadline: {}</p></div>: null}
         </div>
     )
 }

@@ -6,6 +6,7 @@ import SettingsPage from './Pages/SettingsPage.jsx';
 import Layout from './Pages/Layout.jsx';
 import NewTask from './Pages/NewTask.jsx';
 import ViewTasks from './Pages/viewTasks.jsx';
+import InfoPage from './Pages/InfoPage.jsx';
 
 
 export default function App(){
@@ -18,6 +19,7 @@ export default function App(){
         <Route path = "settings" element = {<SettingsPage></SettingsPage>}></Route>
         <Route path = "new" element = {<NewTask></NewTask>}></Route>
         <Route path = "viewtasks" element = {<ViewTasks></ViewTasks>}></Route>
+        <Route path = "info" element ={<InfoPage></InfoPage>}></Route>
       </Route>
     </Routes>
     </BrowserRouter>
