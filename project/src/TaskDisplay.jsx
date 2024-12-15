@@ -29,16 +29,15 @@ export default function TaskDisplay({ detailed }) {
   let check = detailed;
   return (
     <div className="taskContainer">
+    {detailed ? <p className="todoTitle">Current Tasks:</p> : <p className="today">Todays tasks</p>}
       {detailed ? (
         <div className="todo">
-          <p className="todoTitle">Current Tasks:</p>
           {tasks.map((data, index) => (
             <Task key={index} data={data} detailed={true} />
           ))}
         </div>
       ) : (
         <div className="todo">
-          <p className="today">Todays tasks</p>
           {test3.map((data, index) => (
             <Task key={index} data={data} detailed={false} />
           ))}
