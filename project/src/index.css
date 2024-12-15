@@ -59,6 +59,24 @@ body{
   animation: slide-in-bottom 0.5s ease-out;
   height : 60vh;
   overflow: scroll;
+  border:solid 3px;
+}
+.task{
+  background-color: azure;
+  border-radius: 15px;
+  width:72vw;
+}
+.todo{
+  align-content: center;
+  border: solid 1px;
+  width: 90%;
+  
+}
+.todoTitle{
+  font-size: 40px;
+  color: white;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 1);
+  /* border: solid 1px; */
 }
 .return{
   position: absolute;
@@ -166,14 +184,7 @@ border-radius: 10px !important;
     transform:translateY(0);
   }
 }
-.task{
-  background-color: azure;
-  border-radius: 10%;
-  width:50vw;
-}
-.todo{
-  align-content: center;
-}
+
 
 #MooDeng {
   width: 50vw; 

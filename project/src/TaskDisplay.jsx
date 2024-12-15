@@ -33,7 +33,7 @@ export default function TaskDisplay({detailed}){
     return(
         <div className = 'taskContainer'>
             {detailed ?
-            <div className = 'todo'><p>Current Tasks:</p>{database.map((data, index) => <Task key = {index} data = {data} detailed = {true}/>)}</div>
+            <div className = 'todo'><p className ='todoTitle'>Current Tasks:</p>{database.map((data, index) => <Task key = {index} data = {data} detailed = {true}/>)}</div>
             :<div className = 'todo'><p className="today">Todays tasks</p>{test3.filter((p) => p.completed === false).map((data, index) => <Task key = {index} data = {data} detailed = {false}/>)}</div>}
         </div>
         
