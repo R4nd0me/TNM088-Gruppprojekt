@@ -177,13 +177,13 @@ border-radius: 10px !important;
 
 #MooDeng {
   width: 50vw; 
-  transform: translate(50vw, 65vh); 
+  transform: translate(50vw, 63vh); 
   position: absolute; 
 }
 
-.room {
+#room {
   width: 249vw; 
-  transform: translate(-35vw, -38vh); 
+  transform: translate(-37vw, -39vh); 
   position: fixed; 
 }
 .editButton{
