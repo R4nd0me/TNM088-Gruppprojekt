@@ -1,4 +1,5 @@
 [
-    { "_id" : 0, "category" : "work", "name" : "Work on joe", "description" : "Dante", "progress" : 1, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false},
-    { "_id" : 1, "category" : "work", "name" : "Work on moe", "description" : "Dante", "progress" : 1, "deadline" : 5, "size" : 10, "priority" : null, "completed" : false}
+    { "_id" : 0, "category" : "work", "name" : "Finish project", "description" : "I gotta help joe", "progress" : 10, "deadline" : {"day": 0, "month" : 0, "year" : 0}, "size" : 10, "priority" : null, "completed" : false},
+    { "_id" : 1, "category" : "leisure", "name" : "Exercise", "description" : "Help moe", "progress" : 37, "deadline" : {"day": 0, "month" : 0, "year" : 0}, "size" : 10, "priority" : null, "completed" : false},
+    { "_id" : 2, "category" : "home", "name" : "Clean dishes", "description" : "chillax", "progress" : 1, "deadline" : {"day": 0, "month" : 0, "year" : 0}, "size" : 10, "priority" : null, "completed" : false}
     ]
