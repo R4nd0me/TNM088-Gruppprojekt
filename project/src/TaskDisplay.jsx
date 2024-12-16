@@ -48,19 +48,7 @@ export default function TaskDisplay({ detailed }) {
   return (
     <div className="taskContainer">
       {detailed ? <p className="todoTitle">Current Tasks:</p> : <p className="todoTitle">Todays tasks</p>}
-      {detailed ? (
-        <div className="todo">
-          {sortedTasks.map((data, index) => (
-            <Task key={index} data={data} detailed={true} />
-          ))}
-        </div>
-      ) : (
-        <div className="todo">
-          {todayTask.map((data, index) => (
-            <Task key={index} data={data} detailed={false} />
-          ))}
-        </div>
-      )}
+      {(detailed ? sortedTasks : todayTask).map(task => (<Task key={task._id} data={task} detailed={detailed} />))}
     </div>
   );
 }
@@ -77,6 +65,7 @@ function Task({ data, detailed }) { // Task component
   let [sliderValue, setValue] = useState(data.progress);
   let { setTasks } = useTasksContext();
   let [enable, toggleEnable] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(data.completed);
   // useStates and database access
 
   useEffect(() => { // synch components
@@ -96,9 +85,15 @@ function Task({ data, detailed }) { // Task component
           : task
       )
     );
+    setIsCompleted(true);
     toggleEnable((prevState) => (!prevState));
   }
+  useEffect(() => {
+    setIsCompleted(data.completed); // Synchronize with prop data
+  }, [data.completed]); // Re-run when the `completed` prop changes
+  
   /*
+  
                 <IconButton aria-label="complete" onClick={toggleEdit}><NoteAltIcon></NoteAltIcon></IconButton>
     */
   console.log(data.completed)
@@ -147,7 +142,7 @@ function Task({ data, detailed }) { // Task component
           value={sliderValue}
           size="medium"
           onChange={(_, value) => setValue(value)}
-          disabled={enable}
+          disabled={isCompleted}
         ></Slider>
       </div>
       {data.completed == true && detailed == false ? <p className="taskDeadline">Done for today!</p> : null}
