@@ -32,20 +32,19 @@ export default function TaskDisplay({ detailed }) {
       return sizeOrder[b.size] - sizeOrder[a.size];
   });
 
-  const todayTask = tasks.filter((task) => task.completed == false);
+  const todayTask = tasks.filter((task) => task.completed == false).sort((a,b) => sizeOrder[b.size] - sizeOrder[a.size]).slice(0,3);
 
-  const largestTasksPerCategory = Object.values(
-    todayTask.reduce((acc, task) => {
-      const category = task.category;
+  // const largestTasksPerCategory = Object.values(
+  //   todayTask.reduce((acc, task) => {
+  //     const category = task.category;
   
-      // If this category is not yet added or this task has a larger size
-      if (!acc[category] || sizeOrder[task.size] > sizeOrder[acc[category].size]) {
-        acc[category] = task;
-      }
-  
-      return acc;
-    }, {})
-  );
+  //     // If this category is not yet added or this task has a larger size
+  //     if (!acc[category] || sizeOrder[task.size] > sizeOrder[acc[category].size]) {
+  //       acc[category] = task;
+  //     }
+  //     return acc;
+  //   }, {})
+  // );
   return (
     <div className="taskContainer">
       {detailed ? <p className="todoTitle">Current Tasks:</p> : <p className="todoTitle">Todays tasks</p>}
@@ -57,7 +56,7 @@ export default function TaskDisplay({ detailed }) {
         </div>
       ) : (
         <div className="todo">
-          {largestTasksPerCategory.map((data, index) => (
+          {todayTask.map((data, index) => (
             <Task key={index} data={data} detailed={false} />
           ))}
         </div>
@@ -109,7 +108,7 @@ function Task({ data, detailed }) { // Task component
   }
   return (
     <div className="task" id={data.category}>
-      <p className="taskTitle">
+      <div className="taskTitle">
         {(() => {
           switch (data.category) {
             case "home":
@@ -126,7 +125,7 @@ function Task({ data, detailed }) { // Task component
             <CheckCircle className="checkMarkButtonIcon"></CheckCircle>
           </IconButton>
         </div>
-      </p>
+      </div>
       {detailed ? <p className="taskDescription">Description: {data.description}</p> : null}
       {detailed ? (
         <div className="moreInfo">
