@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import tasks from "./TaskDataBase.json";
 import { data, useLocation } from "react-router-dom";
-<<<<<<< HEAD
-import MooDengState from "./MooDengState";
-=======
 // import { updateMooDeng } from "./MooDengState";
->>>>>>> parent of f98f27c (test merge)
 import HouseIcon from "@mui/icons-material/House";
 import WorkIcon from "@mui/icons-material/Work";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
@@ -116,11 +112,7 @@ function Task({ data, detailed }) {
           <p className = "taskDeadline">Status : {data.completed ? "Completed!":"Incomplete!"}</p>
         </div>
       ) : null}
-<<<<<<< HEAD
-        <div className="checkMark" id='submit'>
-=======
         <div className="checkMark">
->>>>>>> parent of f98f27c (test merge)
             <IconButton onClick={handleSlider}>
                 <CheckCircleOutlineIcon></CheckCircleOutlineIcon>
             </IconButton>

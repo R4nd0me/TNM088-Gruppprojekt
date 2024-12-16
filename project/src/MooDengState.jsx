@@ -181,16 +181,6 @@ function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
 export default function MooDengState() {
 
     // updateMooDeng(); 
-<<<<<<< HEAD
-    const {tasks, setTasks} = useTasksContext();
-
-const completedWorkTasks = tasks.filter(
-    (task) => task.category === "work" && task.completed === true
-  );
-
-  console.log("Filtered Tasks:", completedWorkTasks);
-=======
->>>>>>> parent of f98f27c (test merge)
 
     const [state, setState] = useState({
         hunger: 0,
