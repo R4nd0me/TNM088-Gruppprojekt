@@ -93,7 +93,7 @@ body{
   border-radius: 15px;
   padding: 4px;
   margin-bottom:10px;
- 
+  width: 80%
 }
 
 .taskSlider{
@@ -164,7 +164,7 @@ body{
   align-items: center;
   justify-content:center;
   flex-direction: column;
-  background-color: rgba(217, 217, 217, 0.65);
+  background-color: rgba(240,255,255,0.8);
   position:fixed;
   top:45vh;
   animation: slide-in-bottom 0.5s ease-out;
@@ -173,8 +173,8 @@ body{
 }
 .categoryTitle{
   font-size: 30px;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  color: rgba(66, 0, 255, 1) !important;
+  /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */
 
 }
 /* Important läggs till för att override Material UI */
@@ -224,14 +224,85 @@ border-radius: 10px !important;
   align-items: center;
   justify-content:center;
   flex-direction: column;
-  background-color:azure;
+  background-color:rgba(240,255,255,0.8);
   width : 80vw;
   margin-top: 15%;
   position:fixed;
   top:1%;
-  opacity:0.7;
   animation: slide-in-bottom 0.5s ease-out;
   border-radius: 25px;
+}
+
+
+.confirmButton {
+  align-items: center !important;
+  appearance: none !important;
+  background-color: #174ea6 !important;
+  border-radius: 24px !important;
+  border-style: none !important;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0 !important;
+  box-sizing: border-box !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  fill: currentcolor !important;
+  font-family: "Google Sans",Roboto,Arial,sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  height: 48px !important;
+  justify-content: center !important;
+  letter-spacing: .25px !important;
+  line-height: normal !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  padding: 2px 24px !important;
+  position: relative !important;
+  text-align: center !important;
+  text-transform: none !important;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  touch-action: manipulation !important;
+  width: auto !important;
+  will-change: transform,opacity !important;
+  z-index: 0 !important;
+  margin-top: 12px !important;
+  margin-bottom: 12px !important;
+}
+
+.confirmButton:hover {
+  background: #F6F9FE !important;
+  color: #174ea6 !important;
+}
+
+.confirmButton:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%) !important;
+  outline: none !important;
+}
+
+.confirmButton:focus {
+  outline: none !important;
+  border: 2px solid #4285f4 !important;
+}
+
+.confirmButton:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px !important;
+}
+
+.confirmButton:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px !important;
+}
+
+.confirmButton:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px !important;
+}
+
+.confirmButton:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px !important;
+}
+
+.confirmButton:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px !important;
 }
 
 @keyframes slide-in-bottom {

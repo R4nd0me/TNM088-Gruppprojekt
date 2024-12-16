@@ -17,14 +17,20 @@ export default function TaskDisplay({ detailed }) {
   let { tasks , setTasks} = useTasksContext(); // Access taskdatabase
 
   let location = useLocation(); // useLocation
-  console.log(location.state);
-  if (location.state != null) {
-    // Check if new task has been created. Push to task database if a new task is created
-    if (location.state && !tasks.some(task => task._id === location.state._id)) {
-      setTasks(prevTasks => [...prevTasks, location.state]);
+  
+  useEffect(() => {
+    if (location.state) {
+      setTasks((prevTasks) => {
+        const taskExists = prevTasks.some(task => task._id === location.state._id);
+        if (!taskExists) {
+          console.log("Adding to state!", location.state._id);
+          return [...prevTasks, location.state];
+        }
+        return prevTasks;
+      });
     }
-    console.log(tasks);
-  }
+  }, [location.state, setTasks]); 
+
   let test3 = tasks.slice(0,3) // Display first 3
   const sizeOrder = { Small: 1, Medium: 2, Large: 3 };
 
@@ -96,7 +102,7 @@ function Task({ data, detailed }) { // Task component
   
                 <IconButton aria-label="complete" onClick={toggleEdit}><NoteAltIcon></NoteAltIcon></IconButton>
     */
-  console.log(data.completed)
+  // console.log(data.completed)
 
   function handleDelete(){
     console.log("Delete clicked");

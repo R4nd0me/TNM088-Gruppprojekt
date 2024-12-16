@@ -277,7 +277,7 @@ function MooDeng(props) {
     // let happy = props.happy;
     // let kaos = props.kaos;
     // let url = props.url;  
-    console.log("props:", props)
+    // console.log("props:", props)
 
     return (
         <>

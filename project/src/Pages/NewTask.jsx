@@ -86,7 +86,7 @@ function TaskCreator(buttonType){
                 return {...prev, deadline: date}})}/>
             </LocalizationProvider>
             </div>
-            <Button key = 'next' onClick={() => {console.log(taskData);navigate('/', {state: taskData});}}>CONFIRM!</Button>
+            <Button className = "confirmButton" key = 'next' onClick={() => {console.log(taskData);navigate('/', {state: taskData});}}>CONFIRM!</Button>
         </div>
     )
 }
