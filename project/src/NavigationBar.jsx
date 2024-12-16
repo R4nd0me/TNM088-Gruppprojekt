@@ -11,13 +11,13 @@ export default function NavigationBar(){
     return (
         <div className="navbar">
             <Link to = '/settings'>
-            <IconButton aria-label='Settings'><SettingsIcon sx = {{fontSize:40}}></SettingsIcon></IconButton>
+            <IconButton aria-label='Settings'><SettingsIcon className = "navbarIcon" sx = {{fontSize:40}}></SettingsIcon></IconButton>
             </Link>
             <Link to = '/new'>
-            <IconButton aria-label='New'><AddCircleIcon sx = {{fontSize:40}}></AddCircleIcon></IconButton>
+            <IconButton aria-label='New'><AddCircleIcon className = "navbarIcon" sx = {{fontSize:40}}></AddCircleIcon></IconButton>
             </Link>
             <Link to = '/viewtasks'>
-            <IconButton aria-label='View'><AssignmentIcon sx = {{fontSize:40}}></AssignmentIcon></IconButton>
+            <IconButton aria-label='View'><AssignmentIcon className = "navbarIcon" sx = {{fontSize:40}}></AssignmentIcon></IconButton>
             </Link>
         </div>
     )

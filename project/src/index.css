@@ -36,6 +36,15 @@ body{
   bottom:0;
   position: fixed;
 }
+.navbarIcon{
+  width:60px !important;
+  height:60px !important;
+  color:#779ecb !important;
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  border-radius: 100%;
+}
 .container{
   display:flex;
   justify-content: center;
@@ -62,18 +71,31 @@ body{
  width:100%;
  display:flex;
  justify-content:end;
+
 }
 .checkMarkButton{
  padding:0 !important;
  margin:0 !important;
 }
-.task{
-  background-color: azure;
-  border-radius: 15px;
-  padding: 8px;
-  margin-bottom:10px;
-  opacity: 0.8;
+.checkMarkButtonIcon{
+  width:40px !important;
+  height:40px !important;
+  color:#779ecb !important;
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  border-radius: 100%;
 }
+
+
+.task{
+  background-color: rgba(240,255,255,0.8);
+  border-radius: 15px;
+  padding: 4px;
+  margin-bottom:10px;
+ 
+}
+
 .taskSlider{
   padding-left:15px;
   padding-right:15px;
@@ -84,8 +106,14 @@ body{
 }
 .taskDeadline{
   font-size: 16px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+}
+.taskProgression{
+  font-size: 16px;
   margin-left: 8px;
-  margin-bottom: 8px;
+  margin-top:0;
+  margin-bottom:0;
 }
 
 .taskTitle{
@@ -94,9 +122,11 @@ body{
   display: flex;
   align-items: center;
   column-gap: 4px;
+  text-wrap: nowrap;
 }
 .todo{
   width: 90%; 
+  animation: slide-in-bottom 1s ease-out;
 }
 .todoTitle{
   font-size: 40px;

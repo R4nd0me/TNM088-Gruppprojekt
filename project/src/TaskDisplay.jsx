@@ -5,7 +5,7 @@ import HouseIcon from "@mui/icons-material/House";
 import WorkIcon from "@mui/icons-material/Work";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import { IconButton, Slider } from "@mui/material";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import CheckCircle from "@mui/icons-material/CheckCircle";
 import { useTasksContext } from "./context/DatabaseContext";
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 
@@ -91,9 +91,6 @@ function Task({ data, detailed }) { // Task component
 
   function handleDelete(){
     console.log("Delete clicked");
-    if (data.progress == 100){
-      console.log("delete this task");
-    }
   }
   return (
     <div className="task" id={data.category}>
@@ -109,6 +106,11 @@ function Task({ data, detailed }) { // Task component
           }
         })()}
         {data.name}
+        <div className="checkMark">
+          <IconButton className="checkMarkButton" onClick={handleSlider}>
+            <CheckCircle className="checkMarkButtonIcon"></CheckCircle>
+          </IconButton>
+        </div>
       </p>
       {detailed ? <p className="taskDescription">Description: {data.description}</p> : null}
       {detailed ? (
@@ -120,7 +122,7 @@ function Task({ data, detailed }) { // Task component
           <p className="taskDeadline">Size: {data.size}</p>
         </div>
       ) : null}
-      <p className="taskDeadline">Progression: {data.progress}%</p>
+      <p className="taskProgression">Progression: {data.progress}%</p>
       <div className="taskSlider">
         <Slider
           valueLabelDisplay="auto"
@@ -141,11 +143,6 @@ function Task({ data, detailed }) { // Task component
             <DeleteSweepIcon></DeleteSweepIcon>
           </IconButton>
         </div>: null}
-        <div className="checkMark">
-          <IconButton onClick={handleSlider}>
-            <CheckCircleOutlineIcon></CheckCircleOutlineIcon>
-          </IconButton>
-        </div>
       </div>
     </div>
   );
