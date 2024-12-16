@@ -1,33 +1,29 @@
 import React, { useState, useEffect } from "react";
-import tasks from "./TaskDataBase.json";
-import { data, useLocation } from "react-router-dom";
+import {useLocation } from "react-router-dom";
 // import { updateMooDeng } from "./MooDengState";
 import HouseIcon from "@mui/icons-material/House";
 import WorkIcon from "@mui/icons-material/Work";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import { IconButton, Slider } from "@mui/material";
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { useTasksContext } from "./context/DatabaseContext";
-    import { pink } from "@mui/material/colors";
 
 export default function TaskDisplay({ detailed }) {
   // när ett task är completed:
   //updateMooDeng(tasks[0].completed, tasks[1].completed, tasks[2].completed);
 
   // const taskDisplay = Task();
-  let { tasks } = useTasksContext();
+  let { tasks } = useTasksContext(); // Access taskdatabase
 
-  let location = useLocation();
+  let location = useLocation(); // useLocation
   console.log(location.state);
-  if (location.state != null) {
+  if (location.state != null) { // Check if new task has been created. Push to task database if a new task is created
     if (!tasks.includes(location.state)) {
       tasks.push(location.state);
     }
     console.log(tasks);
   }
-  let test3 = tasks.slice(0, 3);
-  let check = detailed;
+  let test3 = tasks.slice(0, 3); // Display first 3
   return (
     <div className="taskContainer">
       {detailed ? <p className="todoTitle">Current Tasks:</p> : <p className="todoTitle">Todays tasks</p>}

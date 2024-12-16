@@ -212,11 +212,19 @@ border-radius: 10px !important;
   }
 }
 
+@keyframes hoverUpAndDown {
+  0%, 100% {
+    transform: translate(50vw, 63vh); /* Start and end at the same position */
+  }
+  50% {
+    transform: translate(50vw, 61vh); /* Move up slightly */
+  }
+}
 
 #MooDeng {
   width: 50vw; 
-  transform: translate(50vw, 63vh); 
   position: absolute; 
+  transform: translate(50vw,63vh);
 }
 
 #room {
