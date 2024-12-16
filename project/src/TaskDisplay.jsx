@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // import { updateMooDeng } from "./MooDengState";
 import HouseIcon from "@mui/icons-material/House";
 import WorkIcon from "@mui/icons-material/Work";
@@ -7,7 +7,7 @@ import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import { IconButton, Slider } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { useTasksContext } from "./context/DatabaseContext";
-import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 
 export default function TaskDisplay({ detailed }) {
   // när ett task är completed:
@@ -18,31 +18,37 @@ export default function TaskDisplay({ detailed }) {
 
   let location = useLocation(); // useLocation
   console.log(location.state);
-  if (location.state != null) { // Check if new task has been created. Push to task database if a new task is created
+  if (location.state != null) {
+    // Check if new task has been created. Push to task database if a new task is created
     if (!tasks.includes(location.state)) {
       tasks.push(location.state);
     }
     console.log(tasks);
   }
-  let test3 = tasks.slice(0,3) // Display first 3
+  let test3 = tasks.slice(0, 3); // Display first 3
   const sizeOrder = { Small: 1, Medium: 2, Large: 3 };
 
   const sortedTasks = [...tasks].sort((a, b) => {
-      return sizeOrder[b.size] - sizeOrder[a.size];
+    return sizeOrder[b.size] - sizeOrder[a.size];
   });
-  
+
+  const todayTask = tasks.filter((task) => task.completed == false);
   return (
     <div className="taskContainer">
-      {detailed ? <p className="todoTitle">Current Tasks:</p> : <p className="todoTitle">Todays tasks</p>}
+      {detailed ? (
+        <p className="todoTitle">Current Tasks:</p>
+      ) : (
+        <p className="todoTitle">Todays tasks</p>
+      )}
       {detailed ? (
         <div className="todo">
           {sortedTasks.map((data, index) => (
             <Task key={index} data={data} detailed={true} />
           ))}
         </div>
-      ) : (
+      ) :(
         <div className="todo">
-          {test3.map((data, index) => (
+          {todayTask.map((data, index) => (
             <Task key={index} data={data} detailed={false} />
           ))}
         </div>
@@ -52,11 +58,12 @@ export default function TaskDisplay({ detailed }) {
 }
 
 // line 29: Check if displayed tasks are meant to be detailed. Home page should only render task name and task progression
-// line 37: Display tasks that are meant to show more info such as description, deadline, etc. 
+// line 37: Display tasks that are meant to show more info such as description, deadline, etc.
 
-
-function Task({ data, detailed }) { // Task component
-  if (data == null) { // Check if data exists
+function Task({ data, detailed }) {
+  // Task component
+  if (data == null) {
+    // Check if data exists
     return;
   }
 
@@ -65,7 +72,8 @@ function Task({ data, detailed }) { // Task component
   let [enable, toggleEnable] = useState(false);
   // useStates and database access
 
-  useEffect(() => { // synch components
+  useEffect(() => {
+    // synch components
     toggleEnable(data.completed);
   }, [data.completed]);
   useEffect(() => {
@@ -82,16 +90,18 @@ function Task({ data, detailed }) { // Task component
           : task
       )
     );
-    toggleEnable((prevState) => (!prevState));
+    if (data.completed == true) {
+      toggleEnable((prevState) => !prevState);
+    }
   }
   /*
                 <IconButton aria-label="complete" onClick={toggleEdit}><NoteAltIcon></NoteAltIcon></IconButton>
     */
-  console.log(data.completed)
+  console.log(data.completed);
 
-  function handleDelete(){
+  function handleDelete() {
     console.log("Delete clicked");
-    if (data.progress == 100){
+    if (data.progress == 100) {
       console.log("delete this task");
     }
   }
@@ -105,18 +115,33 @@ function Task({ data, detailed }) { // Task component
             case "work":
               return <WorkIcon sx={{ color: "#05a5ffa6" }}></WorkIcon>;
             case "leisure":
-              return <SelfImprovementIcon sx={{ color: "#bd00ff" }}></SelfImprovementIcon>;
+              return (
+                <SelfImprovementIcon
+                  sx={{ color: "#bd00ff" }}
+                ></SelfImprovementIcon>
+              );
           }
         })()}
         {data.name}
       </p>
-      {detailed ? <p className="taskDescription">Description: {data.description}</p> : null}
+      {detailed ? (
+        <p className="taskDescription">Description: {data.description}</p>
+      ) : null}
       {detailed ? (
         <div className="moreInfo">
           <p className="taskDeadline">
-            Deadline: {data.deadline == null ? "None!" : data.deadline.day + "/" + data.deadline.month + "/" + data.deadline.year}
+            Deadline:{" "}
+            {data.deadline == null
+              ? "None!"
+              : data.deadline.day +
+                "/" +
+                data.deadline.month +
+                "/" +
+                data.deadline.year}
           </p>
-          <p className="taskDeadline">Status : {data.completed ? "Done Today!" : "Not Done Today!"}</p>
+          <p className="taskDeadline">
+            Status : {data.completed ? "Done Today!" : "Not Done Today!"}
+          </p>
           <p className="taskDeadline">Size: {data.size}</p>
         </div>
       ) : null}
@@ -134,13 +159,17 @@ function Task({ data, detailed }) { // Task component
           disabled={enable}
         ></Slider>
       </div>
-      {data.completed == true && detailed == false ? <p className="taskDeadline">Done for today!</p> : null}
+      {data.completed == true && detailed == false ? (
+        <p className="taskDeadline">Done for today!</p>
+      ) : null}
       <div className="checkMark">
-      {data.progress == 100 ? <div className =  "deleteButton"> 
-          <IconButton onClick={handleDelete}>
-            <DeleteSweepIcon></DeleteSweepIcon>
-          </IconButton>
-        </div>: null}
+        {data.progress == 100 ? (
+          <div className="deleteButton">
+            <IconButton onClick={handleDelete}>
+              <DeleteSweepIcon></DeleteSweepIcon>
+            </IconButton>
+          </div>
+        ) : null}
         <div className="checkMark">
           <IconButton onClick={handleSlider}>
             <CheckCircleOutlineIcon></CheckCircleOutlineIcon>
