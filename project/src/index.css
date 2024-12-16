@@ -173,7 +173,7 @@ body{
 }
 .categoryTitle{
   font-size: 30px;
-  color: rgba(66, 0, 255, 1) !important;
+  color: rgba(52, 127, 133, 1) !important;
   /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */
 
 }
@@ -182,7 +182,7 @@ body{
 .categoryButton_0{
   color: white !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
-background-color:rgba(5, 165, 255, 0.65) !important;
+background-color:rgba(52, 127, 133, 1) !important;
 font-size: large !important;
 width: 80vw  !important;
 padding-top: 20px !important;
@@ -195,7 +195,7 @@ border-radius: 10px !important;
 .categoryButton_1{
   color: white !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
-background-color:rgba(66, 0, 255, 0.65) !important;
+background-color:rgba(89, 167, 165, 1) !important;
 font-size: large !important;
 width: 80vw  !important;
 padding-top: 20px !important;
@@ -206,9 +206,9 @@ border-radius: 10px !important;
 }
 /* new task Leasurebutton */
 .categoryButton_2{
-  color: white !important;
+  color: rgba(52, 127, 133, 1) !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
-background-color:rgba(189, 0, 255, 0.65) !important;
+background-color:rgba(153, 221, 219, 1) !important;
 font-size: large !important;
 width: 80vw  !important;
 padding-top: 20px !important;
@@ -237,7 +237,7 @@ border-radius: 10px !important;
 .confirmButton {
   align-items: center !important;
   appearance: none !important;
-  background-color: #174ea6 !important;
+  background-color: rgba(52, 127, 133, 1) !important;
   border-radius: 24px !important;
   border-style: none !important;
   box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0 !important;

@@ -113,11 +113,11 @@ function Task({ data, detailed }) { // Task component
         {(() => {
           switch (data.category) {
             case "home":
-              return <HouseIcon sx={{ color: "#4200ff" }}></HouseIcon>;
+              return <HouseIcon sx={{ color: "#59A7A5" }}></HouseIcon>;
             case "work":
-              return <WorkIcon sx={{ color: "#05a5ffa6" }}></WorkIcon>;
+              return <WorkIcon sx={{ color: "#347F85" }}></WorkIcon>;
             case "leisure":
-              return <SelfImprovementIcon sx={{ color: "#bd00ff" }}></SelfImprovementIcon>;
+              return <SelfImprovementIcon sx={{ color: "#99DDDB" }}></SelfImprovementIcon>;
           }
         })()}
         {data.name}
