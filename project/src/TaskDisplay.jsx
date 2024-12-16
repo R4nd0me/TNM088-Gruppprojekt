@@ -23,7 +23,7 @@ export default function TaskDisplay({ detailed }) {
     }
     console.log(tasks);
   }
-  let test3 = tasks.slice(0, 3); // Display first 3
+  let test3 = tasks.slice(0,3) // Display first 3
   return (
     <div className="taskContainer">
       {detailed ? <p className="todoTitle">Current Tasks:</p> : <p className="todoTitle">Todays tasks</p>}

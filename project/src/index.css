@@ -203,6 +203,7 @@ border-radius: 10px !important;
   animation: slide-in-bottom 0.5s ease-out;
   border-radius: 25px;
 }
+
 @keyframes slide-in-bottom {
   from {
     transform:translateY(100%);
@@ -230,7 +231,7 @@ border-radius: 10px !important;
 
 #room {
   width: 249vw; 
-  transform: translate(-37vw, -39vh); 
+  transform: translate(-37vw, -39vh);  
   position: fixed; 
 }
 
