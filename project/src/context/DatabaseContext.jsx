@@ -11,9 +11,9 @@ const TasksContext = createContext(undefined)
         { _id : 0, category : "work", name : "Finish project", description : "Finish", progress : 10, deadline : {"day": 18, "month" : 12, "year" : 2024}, size : "Large", priority : null, completed : false},
         { _id : 1, category : "home", name : "Clean dishes", description : "Clean dirty dishes", progress : 1, deadline : null, size : "Medium", priority : null, completed : false},
         { _id : 2, category : "leisure", name : "Exercise", description : "Do yoga", progress : 37, deadline : null, size : "Small", priority : null, completed : false},
-        { _id : 1, category : "leisure", name : "Cykel", description : "Cykel", progress : 1, deadline : null, size : "Medium", priority : null, completed : false},
-        { _id : 1, category : "home", name : "Fixa lampan", description : "lampan bör fixas", progress : 1, deadline : null, size : "Medium", priority : null, completed : false},
-        { _id : 1, category : "work", name : "Ta hem barn", description : "Simon fixar", progress : 1, deadline : null, size : "Medium", priority : null, completed : false}
+        { _id : 3, category : "leisure", name : "Cykel", description : "Cykel", progress : 1, deadline : null, size : "Medium", priority : null, completed : false},
+        { _id : 4, category : "home", name : "Fixa lampan", description : "lampan bör fixas", progress : 1, deadline : null, size : "Medium", priority : null, completed : false},
+        { _id : 5, category : "work", name : "Ta hem barn", description : "Simon fixar", progress : 1, deadline : null, size : "Medium", priority : null, completed : false}
     ]) // Task database
   
     return (

@@ -7,6 +7,7 @@ import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import { IconButton, Slider } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { useTasksContext } from "./context/DatabaseContext";
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 
 export default function TaskDisplay({ detailed }) {
   // när ett task är completed:
@@ -24,12 +25,18 @@ export default function TaskDisplay({ detailed }) {
     console.log(tasks);
   }
   let test3 = tasks.slice(0,3) // Display first 3
+  const sizeOrder = { Small: 1, Medium: 2, Large: 3 };
+
+  const sortedTasks = [...tasks].sort((a, b) => {
+      return sizeOrder[b.size] - sizeOrder[a.size];
+  });
+  
   return (
     <div className="taskContainer">
       {detailed ? <p className="todoTitle">Current Tasks:</p> : <p className="todoTitle">Todays tasks</p>}
       {detailed ? (
         <div className="todo">
-          {tasks.map((data, index) => (
+          {sortedTasks.map((data, index) => (
             <Task key={index} data={data} detailed={true} />
           ))}
         </div>
@@ -81,6 +88,10 @@ function Task({ data, detailed }) { // Task component
                 <IconButton aria-label="complete" onClick={toggleEdit}><NoteAltIcon></NoteAltIcon></IconButton>
     */
   console.log(data.completed)
+
+  function handleDelete(){
+    console.log("Delete clicked");
+  }
   return (
     <div className="task" id={data.category}>
       <p className="taskTitle">
@@ -122,6 +133,11 @@ function Task({ data, detailed }) { // Task component
       </div>
       {data.completed == true && detailed == false ? <p className="taskDeadline">Done for today!</p> : null}
       <div className="checkMark">
+      {data.progress == 100 ? <div className =  "deleteButton"> 
+          <IconButton onClick={handleDelete}>
+            <DeleteSweepIcon></DeleteSweepIcon>
+          </IconButton>
+        </div>: null}
         <div className="checkMark">
           <IconButton onClick={handleSlider}>
             <CheckCircleOutlineIcon></CheckCircleOutlineIcon>
