@@ -91,6 +91,9 @@ function Task({ data, detailed }) { // Task component
 
   function handleDelete(){
     console.log("Delete clicked");
+    if (data.progress == 100){
+      console.log("delete this task");
+    }
   }
   return (
     <div className="task" id={data.category}>
