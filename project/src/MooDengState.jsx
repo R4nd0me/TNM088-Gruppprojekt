@@ -27,12 +27,6 @@ import uttråkad3 from './assets/Moodeng/rum-uttråkad3.svg';
 import bad from './assets/Moodeng/bad.svg';
 import mat from './assets/Moodeng/mat.svg';
 
-
-// let workComplete = false;
-// let homeComplete = false;
-// let freeComplete = false;
-// let allComplete = false;
-
 MooDeng.propTypes = {
     hunger: PropTypes.number,
     clean: PropTypes.number,
@@ -43,37 +37,9 @@ MooDeng.propTypes = {
     room: PropTypes.string
 }
 
-
-// let state = { 
-//     hunger: 0, 
-//     clean: 0, 
-//     play: 0, 
-//     happy: false, 
-//     kaos: false, 
-//     mooBild: vanligDeng,
-//     room: vanligtRum
-// }; 
-
-// if (workComplete || homeComplete || freeComplete) {
-//     updateMooDeng(); 
-//     console.log(state); 
-// }
-
-
-
 console.log("uppdateState")
 function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
     console.log("uppdateState")
-    // let state = { 
-    // hunger: 0, 
-    // clean: 0, 
-    // play: 0, 
-    // happy: false, 
-    // kaos: false, 
-    // mooBild: vanligDeng,
-    // room: vanligtRum
-    // }; 
-
     let newState = state;
 
     // kolla om "work"-task är gjord och uppdatera hunger, bild på mat
@@ -93,7 +59,6 @@ function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
     }
 
     // kolla om "free"-task är gjord och uppdatera play
-
     if (freeComplete && state.play > 0) {
         newState.play--;
     }
@@ -102,7 +67,6 @@ function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
     }
 
     // när alla dagens uppgifter är klara
-    // isHappy(state); 
     let allComplete;
     if (workComplete && homeComplete && freeComplete) {
         allComplete = true;
@@ -125,7 +89,6 @@ function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
     }
 
     // om man inte gjort uppgifter på ett tag
-    // isKaos(state);
     if (state.hunger == 2 && state.clean == 2 && state.play == 2) {
         newState.kaos = true;
         newState.mooBild = kaosDeng;
@@ -136,7 +99,6 @@ function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
     }
 
     // oändliga if-satser, visa rätt moodeng baserat på hunger+clean
-    // displayMoodeng(state); 
     if (state.hunger == 1) {
         if (state.clean == 0) {
             newState.mooBild = H1;
@@ -164,7 +126,6 @@ function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
     }
 
     // bestäm vilken backgrund m.a.p. play
-    // background(state);
     if (state.play == 1) {
         newState.room = uttråkad1;
     }
@@ -179,9 +140,6 @@ function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
 }
 
 export default function MooDengState() {
-
-    // updateMooDeng(); 
-
     const [state, setState] = useState({
         hunger: 0,
         clean: 0,
@@ -228,7 +186,6 @@ export default function MooDengState() {
         let roomImg = document.getElementById("room");
         roomImg.src = tempState.room;
 
-        // RANDY! fixa detta pls 
         setTasks((prevTasks) => 
             prevTasks.map((task) => 
                 task.completed == true ? { ...task, completed : false} : task
@@ -236,14 +193,9 @@ export default function MooDengState() {
         );
     }
 
-    // document.getElementsByClass('submit').addEventListener("click", onClickUpdate);
-
-
     return (
         <>
-            
             <button id='new-day' onClick={onClickUpdate}>New Day</button>
-            <Extras></Extras>
             <MooDeng
                 hunger={state.hunger}
                 clean={state.clean}
@@ -259,88 +211,14 @@ export default function MooDengState() {
     )
 }
 
-function Extras() {
-    return (
-        <>
-            <img id='room_bad' src={bad} />
-            <img id='room_mat' src={mat} />
-        </>
-    )
-}
-
 function MooDeng(props) {
-
-    // let hunger = props.hunger;
-    // let clean = props.clean;
-    // let play = props.play;
-
-    // let happy = props.happy;
-    // let kaos = props.kaos;
-    // let url = props.url;  
-    // console.log("props:", props)
-
     return (
         <>
+            {!props.kaos && <img id='room_bad' src={bad} />}
+            {!props.kaos && <img id='room_mat' src={mat} />}
             <img id='room' src={props.room} />
             <img id='MooDeng' src={props.mooBild} />
         </>
     )
 
 }
-
-
-
-// när alla dagens uppgifter är klara
-// function isHappy(state) {
-//     if (allComplete && !state.kaos) {
-//         state.happy = true;
-//         state.mooBild = heartDeng;
-//     }
-// }
-
-// om man inte gjort uppgifter på ett tag
-// function isKaos(state) {
-//     if (state.hunger == 2 && state.clean == 2 && state.play == 2) {
-//         state.kaos = true;
-//         state.mooBild = kaosDeng;
-//         state.room = uttråkad3;
-//     }
-// }
-
-// function displayMoodeng(state) {
-//     // oändliga if-satser, visa rätt moodeng baserat på hunger+clean
-//     if (state.hunger == 1) {
-//         if (state.clean == 0) {
-//             state.mooBild = H1;
-//         } else if (state.clean == 1) {
-//             state.mooBild = H1S1;
-//         } else {
-//             state.mooBild = H1S2;
-//         }
-//     }
-//     else if (state.hunger == 2) {
-//         if (state.clean == 0) {
-//             state.mooBild = H2;
-//         } else if (state.clean == 1) {
-//             state.mooBild = H2S1;
-//         } else {
-//             state.mooBild = H2S2;
-//         }
-//     }
-//     else if (state.clean == 1) {
-//         state.mooBild = S1;
-//     }
-//     else if (state.clean == 2) {
-//         state.mooBild == S2;
-//     }
-// }
-
-// function background(state) {
-//     // bestäm vilken backgrund m.a.p. play
-//     if (state.play == 1) {
-//         state.room = uttråkad1;
-//     }
-//     else if (state.play == 2 && !state.kaos) {
-//         state.room = uttråkad2;
-//     }
-// }
