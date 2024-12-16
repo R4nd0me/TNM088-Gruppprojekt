@@ -55,8 +55,13 @@ const [category, setCategory] = useState("");
 function TaskCreator(buttonType){
     let navigate = useNavigate();
     const {tasks} = useTasksContext();
-    const [taskData, setTaskData] = useState({_id: tasks.length, name: 'New Task', description : 'Description', progress : 0, size: 0, deadline : dateConverter(dayjs().format('DD/MM/YY')), category: buttonType.buttonType.toLowerCase(), completed:false});
-
+    const sizeLabels = [
+        { value: 0, label: "Small" },
+        { value: 1, label: "Medium" },
+        { value: 2, label: "Large" }]
+    const getLabel = (value) => sizeLabels.find((size) => size.value === value)?.label || "";
+    const [size, setSize] = useState(0);
+    const [taskData, setTaskData] = useState({_id: tasks.length, name: 'New Task', description : 'Description', progress : 0, size: getLabel(0), deadline : null, category: buttonType.buttonType.toLowerCase(), completed:false});
     function dateConverter(dateString){
         const [day, month, year] = dateString.split('/'); // Split the string by '/'
         return {
@@ -64,9 +69,6 @@ function TaskCreator(buttonType){
             month: parseInt(month, 10), // Convert month to a number
             year: parseInt(year, 10), // Convert year to a number
         };
-    }
-    function saveToDatabase(){
-        console.log(jsonData);
     }
 
     return(
@@ -76,15 +78,15 @@ function TaskCreator(buttonType){
             <p>Enter Description</p>
             <input type = "text" placeholder=" description..." onChange={e => setTaskData((prev) => {return {...prev, description: e.target.value}})} value = {taskData.description}></input>
             <p>Task Size</p>
-            <div className = 'sliderContainer'><Slider aria-label="TaskProg"valueLabelDisplay="auto" min={0} max = {100} onChange={(_, value) => setTaskData((prev) => {return {... prev, size: value}})}></Slider></div>
+            <div className = 'sliderContainer'><Slider value = {size}aria-label="TaskProg"valueLabelDisplay="auto" min={0} max = {2} step = {null} marks = {sizeLabels} onChange={(_, value) => setTaskData((prev) => {setSize(value); return {... prev, size: getLabel(value)}})}></Slider></div>
             <p>Deadline</p>
             <div className = 'datePicker'>
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
-            <MobileDatePicker minDate = {dayjs()} defaultValue = {dayjs()} onChange={(newValue) => setTaskData((prev) => {const date = dateConverter(newValue.format('DD/MM/YYYY'));
+            <MobileDatePicker minDate = {dayjs()} defaultValue = {null} onChange={(newValue) => setTaskData((prev) => {const date = dateConverter(newValue.format('DD/MM/YYYY'));
                 return {...prev, deadline: date}})}/>
             </LocalizationProvider>
             </div>
-            <Button key = 'next' onClick={() => {console.log(taskData);navigate('/', {state: taskData});saveToDatabase();}}>CONFIRM!</Button>
+            <Button key = 'next' onClick={() => {console.log(taskData);navigate('/', {state: taskData});}}>CONFIRM!</Button>
         </div>
     )
 }

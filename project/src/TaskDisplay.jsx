@@ -44,15 +44,21 @@ export default function TaskDisplay({ detailed }) {
   );
 }
 
+// line 29: Check if displayed tasks are meant to be detailed. Home page should only render task name and task progression
+// line 37: Display tasks that are meant to show more info such as description, deadline, etc. 
 
-function Task({ data, detailed }) {
-  if (data == null) {
+
+function Task({ data, detailed }) { // Task component
+  if (data == null) { // Check if data exists
     return;
   }
+
   let [sliderValue, setValue] = useState(data.progress);
   let { setTasks } = useTasksContext();
   let [enable, toggleEnable] = useState(false);
-  useEffect(() => {
+  // useStates and database access
+
+  useEffect(() => { // synch components
     toggleEnable(data.completed);
   }, [data.completed]);
   useEffect(() => {
@@ -97,9 +103,10 @@ function Task({ data, detailed }) {
             Deadline: {data.deadline == null ? "None!" : data.deadline.day + "/" + data.deadline.month + "/" + data.deadline.year}
           </p>
           <p className="taskDeadline">Status : {data.completed ? "Done Today!" : "Not Done Today!"}</p>
-          <p className="taskDeadline">Progression: {data.progress}%</p>
+          <p className="taskDeadline">Size: {data.size}</p>
         </div>
       ) : null}
+      <p className="taskDeadline">Progression: {data.progress}%</p>
       <div className="taskSlider">
         <Slider
           valueLabelDisplay="auto"
@@ -115,8 +122,6 @@ function Task({ data, detailed }) {
       </div>
       {data.completed == true && detailed == false ? <p className="taskDeadline">Done for today!</p> : null}
       <div className="checkMark">
-
-
         <div className="checkMark">
           <IconButton onClick={handleSlider}>
             <CheckCircleOutlineIcon></CheckCircleOutlineIcon>
