@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { useTasksContext } from "./context/DatabaseContext";
 
@@ -60,7 +60,7 @@ MooDeng.propTypes = {
 // }
 
 
-function updateMooDeng(state) {
+
 console.log("uppdateState")
 function updateMooDeng(state, workComplete, homeComplete, freeComplete) {
     console.log("uppdateState")
@@ -197,6 +197,7 @@ export default function MooDengState() {
     }, [state]);
 
     // database stuff
+    let { tasks, setTasks } = useTasksContext();
 
     let workComplete = false;
     let homeComplete = false;
