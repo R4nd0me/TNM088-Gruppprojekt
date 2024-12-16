@@ -14,13 +14,14 @@ export default function TaskDisplay({ detailed }) {
   //updateMooDeng(tasks[0].completed, tasks[1].completed, tasks[2].completed);
 
   // const taskDisplay = Task();
-  let { tasks } = useTasksContext(); // Access taskdatabase
+  let { tasks , setTasks} = useTasksContext(); // Access taskdatabase
 
   let location = useLocation(); // useLocation
   console.log(location.state);
-  if (location.state != null) { // Check if new task has been created. Push to task database if a new task is created
-    if (!tasks.includes(location.state)) {
-      tasks.push(location.state);
+  if (location.state != null) {
+    // Check if new task has been created. Push to task database if a new task is created
+    if (location.state && !tasks.some(task => task._id === location.state._id)) {
+      setTasks(prevTasks => [...prevTasks, location.state]);
     }
     console.log(tasks);
   }
@@ -30,7 +31,21 @@ export default function TaskDisplay({ detailed }) {
   const sortedTasks = [...tasks].sort((a, b) => {
       return sizeOrder[b.size] - sizeOrder[a.size];
   });
+
+  const todayTask = tasks.filter((task) => task.completed == false);
+
+  const largestTasksPerCategory = Object.values(
+    todayTask.reduce((acc, task) => {
+      const category = task.category;
   
+      // If this category is not yet added or this task has a larger size
+      if (!acc[category] || sizeOrder[task.size] > sizeOrder[acc[category].size]) {
+        acc[category] = task;
+      }
+  
+      return acc;
+    }, {})
+  );
   return (
     <div className="taskContainer">
       {detailed ? <p className="todoTitle">Current Tasks:</p> : <p className="todoTitle">Todays tasks</p>}
@@ -42,7 +57,7 @@ export default function TaskDisplay({ detailed }) {
         </div>
       ) : (
         <div className="todo">
-          {test3.map((data, index) => (
+          {largestTasksPerCategory.map((data, index) => (
             <Task key={index} data={data} detailed={false} />
           ))}
         </div>
