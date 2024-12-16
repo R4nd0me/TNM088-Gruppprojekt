@@ -57,6 +57,9 @@ function Task({ data, detailed }) {
   let { setTasks } = useTasksContext();
   let [enable, toggleEnable] = useState(false);
   useEffect(() => {
+    toggleEnable(data.completed);
+  }, [data.completed]);
+  useEffect(() => {
     if (data.completed == true && detailed == false) {
       toggleEnable(data.completed);
     }

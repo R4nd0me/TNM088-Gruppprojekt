@@ -197,7 +197,7 @@ export default function MooDengState() {
     }, [state]);
 
     // database stuff
-    let { tasks } = useTasksContext();
+    let { tasks, setTasks} = useTasksContext();
 
     let workComplete = false;
     let homeComplete = false;
@@ -228,12 +228,13 @@ export default function MooDengState() {
         let roomImg = document.getElementById("room");
         roomImg.src = tempState.room;
 
+
         // RANDY! fixa detta pls 
-        // setTasks((prevTasks) => 
-        //     prevTasks.map((task) => 
-        //         task.complete == true ? { ...task, completed : false} : task
-        //     )
-        // );
+        setTasks((prevTasks) => 
+            prevTasks.map((task) => 
+                task.completed == true ? { ...task, completed : false} : task
+            )
+        );
     }
 
     // document.getElementsByClass('submit').addEventListener("click", onClickUpdate);
