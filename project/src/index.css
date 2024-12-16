@@ -239,14 +239,14 @@ border-radius: 10px !important;
   position: fixed;
   width: 250vw; 
   z-index: 1; 
-  transform: translate(-35vw, -35.5vh);
+  transform: translate(-35vw, -37.5vh);
 }
 
 #room_mat {
   position: fixed;
   z-index: 1;
   width: 390vw;
-  transform: translate(-73vw, -100vh);
+  transform: translate(-73vw, -102vh);
 }
 
 #new-day {
