@@ -187,9 +187,14 @@ export default function MooDengState() {
         roomImg.src = tempState.room;
 
         setTasks((prevTasks) => 
-            prevTasks.map((task) => 
-                task.completed == true ? { ...task, completed : false} : task
-            )
+            prevTasks
+                .filter((task) => task.progress !== 100) // Remove tasks with progress 100
+                .map((task) => {
+                    if (task.completed === true) {
+                        task.completed = false; // Reset completed status
+                    }
+                    return task; // Return the modified task
+                })
         );
     }
 

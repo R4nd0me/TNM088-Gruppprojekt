@@ -153,11 +153,6 @@ function Task({ data, detailed }) { // Task component
       </div>
       {data.completed == true && detailed == false ? <p className="taskDeadline">Done for today!</p> : null}
       <div className="checkMark">
-      {data.progress == 100 ? <div className =  "deleteButton"> 
-          <IconButton onClick={handleDelete}>
-            <DeleteSweepIcon></DeleteSweepIcon>
-          </IconButton>
-        </div>: null}
       </div>
     </div>
   );
